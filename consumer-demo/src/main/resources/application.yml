@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+endpoints:
+  health:
+    sensitive: false
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+#management:
+#  server:
+#    port: 4453
+#  security:
+#    enabled: false
+
+logging:
+  level:
+    org.springframework.cloud.consul: DEBUG
+spring:
+  application:
+    name: sc-consumer
+  main:
+    web-application-type: servlet
+  profiles:
+    active: '@activeProfile@'

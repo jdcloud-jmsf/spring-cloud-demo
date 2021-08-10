@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+endpoints:
+  health:
+    sensitive: false
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+#management:
+#  server:
+#    port: 4452
+#  security:
+#    enabled: false
+
+logging:
+  level:
+    org.springframework.cloud.consul: DEBUG
+spring:
+  application:
+    name: sc-provider
+
+  profiles:
+    active: '@activeProfile@'

@@ -1,0 +1,60 @@
+<assembly
+        xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/3.1.1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/3.1.1
+        http://maven.apache.org/xsd/assembly-3.1.1.xsd">
+    <id>package</id>
+    <formats>
+        <format>zip</format>
+        <!--        <format>tar.gz</format>-->
+    </formats>
+    <!-- 指定打的包是否包含打包层目录（比如finalName是jdd-gateway-mercure，当值为true，所有文件被放在包内的jdd-gateway-mercure目录下，否则直接放在包的根目录下）-->
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <!--    <dependencySets>-->
+    <!--        <dependencySet>-->
+    <!--            <useProjectArtifact>true</useProjectArtifact>-->
+    <!--            <outputDirectory>lib</outputDirectory>-->
+    <!--            <excludes>-->
+    <!--                <exclude>-->
+    <!--                    ${groupId}:${artifactId}-->
+    <!--                </exclude>-->
+    <!--            </excludes>-->
+    <!--        </dependencySet>-->
+    <!--    </dependencySets>-->
+    <fileSets>
+        <!--        <fileSet>-->
+        <!--            <directory>bin</directory>-->
+        <!--            <outputDirectory>/bin</outputDirectory>-->
+        <!--            <fileMode>777</fileMode>-->
+        <!--        </fileSet>-->
+        <!--        <fileSet>-->
+        <!--            <directory>${project.build.directory}/conf</directory>-->
+        <!--            <outputDirectory>/conf</outputDirectory>-->
+        <!--        </fileSet>-->
+        <!--        <fileSet>-->
+        <!--            <directory>${project.build.directory}/classes</directory>-->
+        <!--            <outputDirectory>/classes</outputDirectory>-->
+        <!--            <includes>-->
+        <!--                <include>**/*.class</include>-->
+        <!--                <include>META-INF/*</include>-->
+        <!--            </includes>-->
+        <!--        </fileSet>-->
+        <fileSet>
+            <directory>${project.build.directory}/deploy-package/bin</directory>
+            <outputDirectory>/bin</outputDirectory>
+            <fileMode>755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/deploy-package/</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+        <!--                <fileSet>-->
+        <!--                    <directory>${project.build.directory}/classes</directory>-->
+        <!--                    <outputDirectory>/classes</outputDirectory>-->
+        <!--                    <includes>-->
+        <!--                        <include>**/*.class</include>-->
+        <!--                        <include>META-INF/*</include>-->
+        <!--                    </includes>-->
+        <!--                </fileSet>-->
+    </fileSets>
+</assembly>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-cloud-demo</artifactId>
+        <groupId>io.meshware.springcloud</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>provider-demo</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <jkube.generator.name>tpaas-registry-itg.jdcloud.com/jmesh/sc-provider:${project.version}</jkube.generator.name>
+        <jkube.enricher.jkube-service.type>NodePort</jkube.enricher.jkube-service.type>
+        <jkube.enricher.jkube-service.port>8080</jkube.enricher.jkube-service.port>
+    </properties>
+
+    <build>
+        <directory>${basedir}/target</directory>
+        <finalName>sc-provider</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>*.properties</exclude>
+                    <!--<exclude>*.xml</exclude>-->
+                    <exclude>*.yml</exclude>
+                    <exclude>public/static/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>bootstrap.yml</include>
+                    <include>application.yml</include>
+                    <include>application-${activeProfile}.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>public/static/**</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+
+            <!-- 用于复制指定的文件 -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <!-- 过滤后缀为pkcs12、jks的证书文件 -->
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>pfx</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>pkcs12</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>jks</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+                <executions>
+                    <!-- 复制配置文件 -->
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>*.properties</include>
+                                        <include>*.yml</include>
+                                        <include>*.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/deploy-package/config/</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-bin</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/bin</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>*.sh</include>
+                                        <include>*.bat</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/deploy-package/bin/</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-others</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>.</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>*.zip</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/deploy-package/</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- spring-boot-maven-plugin可以不使用，可当做一般jar包来运行 -->
+            <!-- spring-boot-maven-plugin可统一包内文件结构-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <mainClass>io.meshware.springcloud.demo.provider.ProviderApplication</mainClass>
+                    <layout>ZIP</layout>
+                    <addResources>true</addResources>
+                    <outputDirectory>${project.build.directory}/deploy-package</outputDirectory>
+                    <!--                    <includes>-->
+                    <!--                        <include>-->
+                    <!--                            <groupId>com.jd.jdd</groupId>-->
+                    <!--                            <artifactId>gateway-core</artifactId>-->
+                    <!--                        </include>-->
+                    <!--                    </includes>-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <!--<classifier>run</classifier> -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--maven打包时，跳过测试-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jkube</groupId>
+                <artifactId>kubernetes-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>resource</goal>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <pullRegistry>tpaas-registry-itg-vpc.jdcloud.com</pullRegistry>
+                    <pushRegistry>tpaas-registry-itg.jdcloud.com</pushRegistry>
+                    <registry>tpaas-registry-itg.jdcloud.com</registry>
+                    <authConfig>
+                        <push>
+                            <username>jrwangwei3</username>
+                            <password>jrwangwei3</password>
+                        </push>
+                    </authConfig>
+                    <resources>
+                        <env>
+                            <organization>JMesh</organization>
+                            <projectname>${project.name}</projectname>
+                        </env>
+                        <!--                        <controllerName>my-deploymentname</controllerName>-->
+                        <!--                        <containerPrivileged>true</containerPrivileged>-->
+                        <imagePullPolicy>Always</imagePullPolicy>
+                        <replicas>2</replicas>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

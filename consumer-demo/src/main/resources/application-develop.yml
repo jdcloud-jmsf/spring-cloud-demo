@@ -1,0 +1,35 @@
+spring:
+  config:
+    import:
+      - optional:consul:127.0.0.1:8500
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        register-health-check: true
+        acl-token: 6fca9ebf-ab1d-8023-9348-e6e12649968f
+        default-zone-metadata-name: myZone
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
+        instance-group: consumer
+        instance-zone: zone1
+        health-check-critical-timeout: 20s
+        tags:
+          - test
+          - chen
+          - consumer
+        metadata:
+          myfield: myvalue
+          anotherfield: anothervalue
+      config:
+        enabled: true
+        aclToken: 6fca9ebf-ab1d-8023-9348-e6e12649968f
+        format: YAML
+        watch:
+          enabled: true
+          wait-time: 5
+          delay: 10
+  main:
+    web-application-type: servlet
+
