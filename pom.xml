@@ -11,7 +11,7 @@
     </parent>
     <groupId>io.meshware.springcloud</groupId>
     <artifactId>spring-cloud-demo</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>provider-demo</module>
         <module>consumer-demo</module>

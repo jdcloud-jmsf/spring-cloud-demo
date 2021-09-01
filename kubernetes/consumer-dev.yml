@@ -1,0 +1,106 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      jkube.io/scm-url: https://github.com/spring-projects/spring-boot/spring-cloud-demo/consumer-demo
+      jkube.io/git-url: https://git.jd.com/jmesh/spring-cloud-samples.git
+      jkube.io/scm-tag: HEAD
+      jkube.io/git-commit: 51aee249dc46ba45ec7ae523008c7c026df815b2
+      jkube.io/git-branch: master
+    labels:
+      app: consumer-demo
+      provider: jkube
+      version: 1.0-SNAPSHOT
+      group: io.meshware.springcloud
+    name: sc-consumer
+  spec:
+    ports:
+    - name: us-cli
+      port: 8082
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: consumer-demo
+      provider: jkube
+      group: io.meshware.springcloud
+    type: NodePort
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      jkube.io/scm-url: https://github.com/spring-projects/spring-boot/spring-cloud-demo/consumer-demo
+      jkube.io/git-url: https://git.jd.com/jmesh/spring-cloud-samples.git
+      jkube.io/scm-tag: HEAD
+      jkube.io/git-commit: 51aee249dc46ba45ec7ae523008c7c026df815b2
+      jkube.io/git-branch: master
+    labels:
+      app: consumer-demo
+      provider: jkube
+      version: 1.0-SNAPSHOT
+      group: io.meshware.springcloud
+    name: consumer-demo
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 2
+    selector:
+      matchLabels:
+        app: consumer-demo
+        provider: jkube
+        group: io.meshware.springcloud
+    template:
+      metadata:
+        annotations:
+          jkube.io/scm-url: https://github.com/spring-projects/spring-boot/spring-cloud-demo/consumer-demo
+          jkube.io/git-url: https://git.jd.com/jmesh/spring-cloud-samples.git
+          jkube.io/scm-tag: HEAD
+          jkube.io/git-commit: 51aee249dc46ba45ec7ae523008c7c026df815b2
+          jkube.io/git-branch: master
+        labels:
+          app: consumer-demo
+          provider: jkube
+          version: 1.0-SNAPSHOT
+          group: io.meshware.springcloud
+      spec:
+        containers:
+        - env:
+          - name: organization
+            value: JMesh
+          - name: projectname
+            value: consumer-demo
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: HOSTNAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          image: tpaas-registry-itg-vpc.jdcloud.com/jmesh/sc-consumer:1.0.0-SNAPSHOT
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8082
+              scheme: HTTP
+            initialDelaySeconds: 180
+            successThreshold: 1
+          name: jmesh-consumer-demo
+          ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8082
+              scheme: HTTP
+            initialDelaySeconds: 10
+            successThreshold: 1
+          securityContext:
+            privileged: false

@@ -1,10 +1,10 @@
 spring:
   config:
     import:
-      - optional:consul:consul-server.default.svc:8500
+      - optional:consul:consul-server.consul-system.svc:8500
   cloud:
     consul:
-      host: consul-server.default.svc
+      host: consul-server.consul-system.svc
       port: 8500
       discovery:
         prefer-ip-address: true
