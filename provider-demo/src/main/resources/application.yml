@@ -22,7 +22,7 @@ logging:
     org.springframework.cloud.consul: DEBUG
 spring:
   application:
-    name: sc-provider
+    name: ${JMESH_SERVICE_APP:sc-provider}
 
   profiles:
     active: '@activeProfile@'

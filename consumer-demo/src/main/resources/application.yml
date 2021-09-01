@@ -20,7 +20,7 @@ logging:
     org.springframework.cloud.consul: DEBUG
 spring:
   application:
-    name: sc-consumer
+    name: ${JMESH_SERVICE_APP:sc-consumer}
   main:
     web-application-type: servlet
   profiles:

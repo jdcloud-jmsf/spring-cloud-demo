@@ -67,6 +67,10 @@ items:
       spec:
         containers:
         - env:
+          - name: JMESH_SERVICE_APP
+            value: sc-consumer
+          - name: JMESH_REGISTRY_HOST
+            value: 116.196.114.131
           - name: organization
             value: JMesh
           - name: projectname

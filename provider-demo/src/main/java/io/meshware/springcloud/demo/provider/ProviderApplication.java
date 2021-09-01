@@ -2,8 +2,6 @@ package io.meshware.springcloud.demo.provider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author chenzhiguo
@@ -12,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProviderApplication {
 
     public static void main(String[] args) {
+        // System.setProperty("JMESH_SERVICE_APP", "sc-provider-chen");
+        // System.setProperty("JMESH_REGISTRY_HOST", "116.196.114.131");
         SpringApplication.run(ProviderApplication.class, args);
     }
 

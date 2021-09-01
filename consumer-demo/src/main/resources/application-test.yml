@@ -1,10 +1,10 @@
 spring:
   config:
     import:
-      - optional:consul:consul-server.consul-system.svc:8500
+      - optional:consul:${JMESH_REGISTRY_HOST:127.0.0.1}:8500
   cloud:
     consul:
-      host: consul-server.consul-system.svc
+      host: ${JMESH_REGISTRY_HOST:127.0.0.1}
       port: 8500
       discovery:
         prefer-ip-address: true

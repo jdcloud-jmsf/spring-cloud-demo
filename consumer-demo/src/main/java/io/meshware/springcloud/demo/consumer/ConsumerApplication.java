@@ -23,6 +23,8 @@ import java.util.Random;
 public class ConsumerApplication {
 
     public static void main(String[] args) {
+        // System.setProperty("JMESH_SERVICE_APP", "sc-consumer-chen");
+        // System.setProperty("JMESH_REGISTRY_HOST", "116.196.114.131");
         SpringApplication.run(ConsumerApplication.class, args);
     }
 
