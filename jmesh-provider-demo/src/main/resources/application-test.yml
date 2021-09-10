@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+jmesh:
+  enabled: true
+  tags:
+    - jmesh1
+    - jmesh2
+  metadata:
+    aa: aa
+    bb: bb
+  route:
+    load-balance: random
+    retryable-status-codes:
+      - 404
+      - 500
+      - 502
+  circuit-breaker:
+    enabled: true
+    wait-timeout-in-second: 10
+
+  swagger:
+    enabled: true
+#    basePackage: com.jdcloud.jmesh
+

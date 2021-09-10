@@ -1,0 +1,75 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /
+
+management:
+  endpoint:
+    shutdown:
+      enabled: false
+    restart:
+      enabled: false
+    health:
+      enabled: true
+    refresh:
+      enabled: true
+  #  server:
+  #    port: 4452
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health,info,refresh
+
+logging:
+  level:
+    org.springframework.cloud.consul: DEBUG
+spring:
+  application:
+    name: sc-jmesh-consumer
+#    config:
+#      import:
+#        - optional:consul:127.0.0.1:8500
+  cloud:
+    loadbalancer:
+      enabled: true
+      zone: zone1
+      configurations: zone-preference
+      retry:
+        enabled: true
+        max-retries-on-next-service-instance: 3
+#        retryable-status-codes:
+#          - 502
+#          - 500
+    consul:
+#      host: 127.0.0.1
+#      port: 8500
+      discovery:
+#        acl-token: 6fca9ebf-ab1d-8023-9348-e6e12649968f
+        register-health-check: true
+        prefer-ip-address: true
+        default-zone-metadata-name: myZone
+#        instance-id: consumer-001-WithZone
+        instance-group: consumer
+        instance-zone: zone1
+        tags:
+          - test
+          - chen
+          - consumer
+        metadata:
+          cc: cc
+      config:
+        enabled: true
+#        aclToken: 6fca9ebf-ab1d-8023-9348-e6e12649968f
+        format: YAML
+        watch:
+          enabled: true
+          wait-time: 5
+          delay: 10
+        import-check:
+          enabled: false
+  main:
+    web-application-type: servlet
+  profiles:
+    active: '@activeProfile@'
+

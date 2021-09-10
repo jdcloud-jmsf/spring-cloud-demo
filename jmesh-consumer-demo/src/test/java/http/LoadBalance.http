@@ -1,0 +1,53 @@
+### Successful test: check response status is 200
+GET http://127.0.0.1:8081/echo/helloworld
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### Successful test: check response status is 200
+GET http://127.0.0.1:8081/echoByFeign/helloworld
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### Successful test: check response status is 200
+GET http://127.0.0.1:8081/echoByRT/helloworld
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### Successful test: check response status is 200
+GET http://127.0.0.1:8081/echoByWC/helloworld
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### Error test: check response status is 500
+GET http://127.0.0.1:8081/exception
+
+> {%
+client.test("Request executed exception", function() {
+  client.assert(response.status === 500, "Response status is not 200");
+});
+%}
+
+### Error test: check response status is 500
+GET http://127.0.0.1:8081/echo/hello/4000
+
+> {%
+client.test("Request executed time out", function() {
+  client.assert(response.status === 500, "Response status is not 200");
+});
+%}
