@@ -5,12 +5,6 @@ items:
 - apiVersion: v1
   kind: Service
   metadata:
-    annotations:
-      jkube.io/scm-url: https://github.com/spring-projects/spring-boot/spring-cloud-demo/consumer-demo
-      jkube.io/git-url: https://git.jd.com/jmesh/spring-cloud-samples.git
-      jkube.io/scm-tag: HEAD
-      jkube.io/git-commit: 51aee249dc46ba45ec7ae523008c7c026df815b2
-      jkube.io/git-branch: master
     labels:
       app: consumer-demo
       provider: jkube
@@ -31,12 +25,6 @@ items:
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
-    annotations:
-      jkube.io/scm-url: https://github.com/spring-projects/spring-boot/spring-cloud-demo/consumer-demo
-      jkube.io/git-url: https://git.jd.com/jmesh/spring-cloud-samples.git
-      jkube.io/scm-tag: HEAD
-      jkube.io/git-commit: 51aee249dc46ba45ec7ae523008c7c026df815b2
-      jkube.io/git-branch: master
     labels:
       app: consumer-demo
       provider: jkube
@@ -53,12 +41,6 @@ items:
         group: io.meshware.springcloud
     template:
       metadata:
-        annotations:
-          jkube.io/scm-url: https://github.com/spring-projects/spring-boot/spring-cloud-demo/consumer-demo
-          jkube.io/git-url: https://git.jd.com/jmesh/spring-cloud-samples.git
-          jkube.io/scm-tag: HEAD
-          jkube.io/git-commit: 51aee249dc46ba45ec7ae523008c7c026df815b2
-          jkube.io/git-branch: master
         labels:
           app: consumer-demo
           provider: jkube
@@ -71,6 +53,8 @@ items:
             value: sc-consumer
           - name: JMESH_REGISTRY_HOST
             value: 116.196.114.131
+          - name: JMESH_REGISTRY_TOKEN
+            value: ""
           - name: organization
             value: JMesh
           - name: projectname

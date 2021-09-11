@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>consumer-demo</artifactId>
+    <name>Origin - Spring Cloud Consumer Demo</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

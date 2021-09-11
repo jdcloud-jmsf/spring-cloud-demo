@@ -9,7 +9,7 @@ spring:
       discovery:
         prefer-ip-address: true
         register-health-check: true
-#        acl-token: 6fca9ebf-ab1d-8023-9348-e6e12649968f
+        acl-token: ${JMESH_REGISTRY_TOKEN}
         default-zone-metadata-name: myZone
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
         instance-group: provider
@@ -24,7 +24,7 @@ spring:
           anotherfield: anothervalue
       config:
         enabled: true
-#        aclToken: 6fca9ebf-ab1d-8023-9348-e6e12649968f
+        acl-token: ${JMESH_REGISTRY_TOKEN}
         format: YAML
         watch:
           enabled: true
