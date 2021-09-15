@@ -60,8 +60,8 @@ public class ConsumerController {
     @GetMapping("/env/{str}")
     public Map<String, Object> getEnv(@PathVariable String str) {
         Map<String, Object> result = new HashMap<>();
-        result.put("resultFromFeignClient", fooService.echo(str));
-        result.put("resultGetEnv", System.getProperty(str));
+        // result.put("resultFromFeignClient", fooService.echo(str));
+        result.put("resultGetEnv", System.getenv(str));
         return result;
     }
 
@@ -157,5 +157,12 @@ public class ConsumerController {
     @GetMapping(value = "/invokeHttpBin")
     public String invokeHttpBin() {
         return loadBalanced.getForObject("http://httpbin/get", String.class);
+    }
+
+    @GetMapping("/status/{code}")
+    public CommonResponse status(@PathVariable int code) {
+        CommonResponse commonResponse = CommonResponse.createResponse();
+        commonResponse.setData(loadBalanced.getForObject("http://" + providerName + "/status/" + code, String.class));
+        return commonResponse;
     }
 }

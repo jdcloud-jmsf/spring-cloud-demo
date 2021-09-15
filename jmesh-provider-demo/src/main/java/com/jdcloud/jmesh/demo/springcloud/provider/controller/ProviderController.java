@@ -1,6 +1,8 @@
 package com.jdcloud.jmesh.demo.springcloud.provider.controller;
 
+import com.jdcloud.jmesh.circuitbreaker.entity.CircuitBreakerRule;
 import com.jdcloud.jmesh.core.context.JMeshContext;
+import com.jdcloud.jmesh.core.entity.CommonResponse;
 import com.jdcloud.jmesh.core.entity.Metadata;
 import com.jdcloud.jmesh.core.entity.TagPair;
 import com.jdcloud.jmesh.demo.springcloud.provider.properties.ConfigDemoProperties;
@@ -16,7 +18,9 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
 @Slf4j
@@ -31,6 +35,8 @@ public class ProviderController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    private Map<String, Long> counts = new ConcurrentHashMap<>();
 
     @GetMapping("/env/{str}")
     public String getEnv(@PathVariable String str) {
@@ -163,4 +169,42 @@ public class ProviderController {
         int a = 100 / 0;
         return "success" + a;
     }
+
+    @GetMapping("/status/{code}")
+    public synchronized CommonResponse status(@PathVariable int code, HttpServletResponse response) {
+        counts.put(String.format("/status/%d", code),
+                counts.getOrDefault(String.format("/status/%d", code), 0L) + 1);
+        log.info("status-{}", code);
+        response.setStatus(code);
+        CommonResponse commonResponse = CommonResponse.createResponse();
+        commonResponse.put("count", counts.get(String.format("/status/%d", code)));
+        return commonResponse;
+    }
+
+    @GetMapping("/sleep/{millis}")
+    public String sleep(@PathVariable long millis) {
+        log.info(String.format("sleep %d millis", millis));
+        try {
+            Thread.sleep(millis);
+        } catch (Exception exp) {
+            log.error(exp.toString());
+        }
+        return "";
+    }
+
+    @PostMapping("/post")
+    public synchronized String post(@RequestBody CircuitBreakerRule breakerRule) {
+        counts.put("/post", counts.getOrDefault("/post", 0L) + 1);
+        log.info("port");
+        log.info(breakerRule.toString());
+        return breakerRule.toString();
+    }
+
+    @PutMapping("/put")
+    public synchronized void put(@RequestBody CircuitBreakerRule breakerRule) {
+        counts.put("/put", counts.getOrDefault("/put", 0L) + 1);
+        log.info("put");
+        log.info(breakerRule.toString());
+    }
+
 }
