@@ -3,9 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>io.meshware.springcloud</groupId>
-        <artifactId>spring-cloud-demo</artifactId>
+        <groupId>com.jdcloud.jmesh</groupId>
+        <artifactId>spring-cloud-jmesh-dependencies</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath></relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -24,14 +25,9 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Java Web Starter -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>com.jdcloud.jmesh</groupId>
+            <artifactId>spring-cloud-starter-jmesh</artifactId>
         </dependency>
     </dependencies>
 

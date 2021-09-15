@@ -27,6 +27,7 @@ image-jmesh-provider:
 	mvn k8s:build -f ./jmesh-provider-demo/pom.xml
 
 docker-login:
+	#docker login jdcloud-cn-north-1.jcr.service.jdcloud.com   -u jdcloud -p xd8JEsbMe8iNAjR1
 	docker login tpaas-registry-itg.jdcloud.com -u 'jrwangwei3' -p 'jrwangwei3'
 
 push-consumer:

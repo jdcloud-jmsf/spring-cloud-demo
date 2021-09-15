@@ -15,3 +15,9 @@ jmesh:
   swagger:
     enabled: true
 #    basePackage: com.jdcloud.jmesh
+
+dynamic:
+  commonData: aaa123
+  intValue: 12
+  stringValue: aaaa
+  boolValue: true

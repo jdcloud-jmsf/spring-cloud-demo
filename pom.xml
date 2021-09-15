@@ -28,10 +28,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.jdcloud.jmesh</groupId>
-            <artifactId>spring-cloud-starter-jmesh</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter</artifactId>
         </dependency>
