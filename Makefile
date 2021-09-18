@@ -20,27 +20,27 @@ image-consumer:
 image-provider:
 	mvn k8s:build -f ./provider-demo/pom.xml
 
-image-jmesh-consumer:
-	mvn k8s:build -f ./jmesh-consumer-demo/pom.xml
+image-jmsf-consumer:
+	mvn k8s:build -f ./jmsf-consumer-demo/pom.xml
 
-image-jmesh-provider:
-	mvn k8s:build -f ./jmesh-provider-demo/pom.xml
+image-jmsf-provider:
+	mvn k8s:build -f ./jmsf-provider-demo/pom.xml
 
 docker-login:
 	#docker login jdcloud-cn-north-1.jcr.service.jdcloud.com   -u jdcloud -p xd8JEsbMe8iNAjR1
 	docker login tpaas-registry-itg.jdcloud.com -u 'jrwangwei3' -p 'jrwangwei3'
 
 push-consumer:
-	docker push tpaas-registry-itg.jdcloud.com/jmesh/sc-consumer:1.0.0-SNAPSHOT
+	docker push tpaas-registry-itg.jdcloud.com/jmsf/sc-consumer:1.0.0-SNAPSHOT
 
 push-provider:
-	docker push tpaas-registry-itg.jdcloud.com/jmesh/sc-provider:1.0.0-SNAPSHOT
+	docker push tpaas-registry-itg.jdcloud.com/jmsf/sc-provider:1.0.0-SNAPSHOT
 
-push-jmesh-consumer:
-	docker push tpaas-registry-itg.jdcloud.com/jmesh/sc-jmesh-consumer:1.0.0-SNAPSHOT
+push-jmsf-consumer:
+	docker push tpaas-registry-itg.jdcloud.com/jmsf/sc-jmsf-consumer:1.0.0-SNAPSHOT
 
-push-jmesh-provider:
-	docker push tpaas-registry-itg.jdcloud.com/jmesh/sc-jmesh-provider:1.0.0-SNAPSHOT
+push-jmsf-provider:
+	docker push tpaas-registry-itg.jdcloud.com/jmsf/sc-jmsf-provider:1.0.0-SNAPSHOT
 
 undeploy-consumer:
 	kubectl delete -f ./kubernetes/sc-consumer.yml
@@ -54,14 +54,14 @@ deploy-consumer:
 deploy-provider:
 	kubectl apply -f ./kubernetes/sc-provider.yml
 
-undeploy-jmesh-consumer:
-	kubectl delete -f ./kubernetes/jmesh-consumer.yml
+undeploy-jmsf-consumer:
+	kubectl delete -f ./kubernetes/jmsf-consumer.yml
 
-undeploy-jmesh-provider:
-	kubectl delete -f ./kubernetes/jmesh-consumer.yml
+undeploy-jmsf-provider:
+	kubectl delete -f ./kubernetes/jmsf-consumer.yml
 
-deploy-jmesh-consumer:
-	kubectl apply -f ./kubernetes/jmesh-consumer.yml
+deploy-jmsf-consumer:
+	kubectl apply -f ./kubernetes/jmsf-consumer.yml
 
-deploy-jmesh-provider:
-	kubectl apply -f ./kubernetes/jmesh-provider.yml
+deploy-jmsf-provider:
+	kubectl apply -f ./kubernetes/jmsf-provider.yml

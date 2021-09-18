@@ -15,8 +15,8 @@
     <modules>
         <module>provider-demo</module>
         <module>consumer-demo</module>
-        <module>jmesh-provider-demo</module>
-        <module>jmesh-consumer-demo</module>
+        <module>jmsf-provider-demo</module>
+        <module>jmsf-consumer-demo</module>
     </modules>
     <packaging>pom</packaging>
 
