@@ -24,6 +24,8 @@ management:
 logging:
   level:
     org.springframework.cloud.consul: DEBUG
+    com.jdcloud: DEBUG
+
 spring:
   application:
     name: sc-jmesh-consumer
