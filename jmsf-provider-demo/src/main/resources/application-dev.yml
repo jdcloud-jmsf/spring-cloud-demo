@@ -3,11 +3,11 @@ server:
   #  port: 8080
   servlet:
     context-path: /
-jmesh:
+jmsf:
   enabled: true
   tags:
-    - jmesh1
-    - jmesh2
+    - jmsf1
+    - jmsf2
   metadata:
     aa: aa
     bb: bb
@@ -23,7 +23,7 @@ jmesh:
 
   swagger:
     enabled: true
-    basePackage: com.jdcloud.jmesh
+    basePackage: com.jdcloud.jmsf
 
 spring:
   cloud:

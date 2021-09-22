@@ -49,7 +49,7 @@ public class ConsumerController {
     @LoadBalanced
     private WebClient.Builder webClientBuilder;
 
-    @Value("${PROVIDER_NAME:sc-jmesh-provider}")
+    @Value("${PROVIDER_NAME:sc-jmsf-provider}")
     private String providerName;
 
     @GetMapping("/")

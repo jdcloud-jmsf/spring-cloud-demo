@@ -1,8 +1,8 @@
-jmesh:
+jmsf:
   enabled: true
   tags:
-    - jmesh1
-    - jmesh2
+    - jmsf1
+    - jmsf2
   metadata:
     aa: aa
     bb: bb
@@ -14,7 +14,7 @@ jmesh:
 #      - 502
   swagger:
     enabled: true
-#    basePackage: com.jdcloud.jmesh
+#    basePackage: com.jdcloud.jmsf
 
 dynamic:
   commonData: aaa123

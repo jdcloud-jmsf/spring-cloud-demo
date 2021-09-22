@@ -68,7 +68,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-          image: tpaas-registry-itg-vpc.jdcloud.com/jmesh/sc-provider:1.0.0-SNAPSHOT
+          image: tpaas-registry-itg-vpc.jdcloud.com/jmsf/sc-provider:1.0.0-SNAPSHOT
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -78,7 +78,7 @@ items:
               scheme: HTTP
             initialDelaySeconds: 180
             successThreshold: 1
-          name: jmesh-provider-demo
+          name: sc-provider-demo
           ports:
           - containerPort: 8080
             name: http

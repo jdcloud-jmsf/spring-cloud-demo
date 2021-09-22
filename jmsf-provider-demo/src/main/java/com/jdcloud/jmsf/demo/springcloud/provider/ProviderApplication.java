@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author Zhiguo.Chen
  */
-@SpringBootApplication(scanBasePackages = {"com.jdcloud.jmesh.demo.springcloud.provider"})
+@SpringBootApplication(scanBasePackages = {"com.jdcloud.jmsf.demo.springcloud.provider"})
 public class ProviderApplication {
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class ProviderApplication {
         // System.setProperty("JMESH_REGISTRY_TOKEN", "6fca9ebf-ab1d-8023-9348-e6e12649968f");
 
         // System.setProperty("JMESH_SERVICE_NAMESPACE", "default");
-        // System.setProperty("JMESH_SERVICE_APP", "jmesh-provider-demo");
+        // System.setProperty("JMESH_SERVICE_APP", "jmsf-provider-demo");
         // System.setProperty("JMESH_SERVICE_VERSION", "v1.0");
         // System.setProperty("JMESH_SERVICE_GROUP", "group1");
         // System.setProperty("JMESH_SERVICE_CLUSTER", "cluster-dev");

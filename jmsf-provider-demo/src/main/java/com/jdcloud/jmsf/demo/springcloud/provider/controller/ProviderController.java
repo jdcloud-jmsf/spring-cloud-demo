@@ -112,14 +112,14 @@ public class ProviderController {
     public String echo(@PathVariable String str) {
         List<TagPair> tagPairs = JMeshContext.getTags(JMeshContext.Type.UPSTREAM);
         log.info("[Provider-demo]--response info: {}, tags={}", str, tagPairs);
-        // return restTemplate.getForObject("http://sc-jmesh-consumer/echo2/" + str, String.class) + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
+        // return restTemplate.getForObject("http://sc-jmsf-consumer/echo2/" + str, String.class) + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
         return str + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
     }
 
     @GetMapping(value = "/echo/{str}/{sleepSeconds}")
     public String echoBySleep(@PathVariable("str") String str, @PathVariable("sleepSeconds") Integer seconds) {
         log.info("[Provider-demo]--response info: {}, seconds={}", str, seconds);
-        // return restTemplate.getForObject("http://sc-jmesh-consumer/echo2/" + str, String.class) + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
+        // return restTemplate.getForObject("http://sc-jmsf-consumer/echo2/" + str, String.class) + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
         try {
             Thread.sleep(seconds);
         } catch (InterruptedException e) {

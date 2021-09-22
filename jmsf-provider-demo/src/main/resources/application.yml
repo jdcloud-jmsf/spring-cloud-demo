@@ -21,7 +21,7 @@ logging:
 
 spring:
   application:
-    name: sc-jmesh-provider
+    name: sc-jmsf-provider
 #  config:
 #    import:
 #      - optional:consul:127.0.0.1:8500
@@ -43,7 +43,7 @@ spring:
 #        instance-id: provider-withZone-${random.int}
         instance-group: provider
         instance-zone: zone1
-#        service-name: sc-jmesh-provider-sn
+#        service-name: sc-jmsf-provider-sn
         health-check-critical-timeout: 10s
         tags:
           - test

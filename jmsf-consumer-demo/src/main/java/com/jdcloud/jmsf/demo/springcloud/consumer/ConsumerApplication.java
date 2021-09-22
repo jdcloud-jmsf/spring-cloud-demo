@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Slf4j
 @EnableScheduling
 @EnableFeignClients
-@SpringBootApplication(scanBasePackages = "com.jdcloud.jmesh.demo.springcloud.consumer")
+@SpringBootApplication(scanBasePackages = "com.jdcloud.jmsf.demo.springcloud.consumer")
 public class ConsumerApplication {
 
     public static void main(String[] args) {
@@ -23,7 +23,7 @@ public class ConsumerApplication {
         // System.setProperty("JMESH_REGISTRY_TOKEN", "6fca9ebf-ab1d-8023-9348-e6e12649968f");
 
         // System.setProperty("JMESH_SERVICE_NAMESPACE", "default");
-        // System.setProperty("JMESH_SERVICE_APP", "jmesh-consumer-demo");
+        // System.setProperty("JMESH_SERVICE_APP", "jmsf-consumer-demo");
         // System.setProperty("JMESH_SERVICE_VERSION", "v1.0");
         // System.setProperty("JMESH_SERVICE_GROUP", "group1");
         // System.setProperty("JMESH_SERVICE_CLUSTER", "cluster-dev");
@@ -32,7 +32,7 @@ public class ConsumerApplication {
         // System.setProperty("JMESH_MESH_GROUP", "mesh01");
         // System.setProperty("JMESH_SERVICE_DEPLOYMENT", "dep1");
         // System.setProperty("JMESH_ZONE", "zone1");
-        // System.setProperty("PROVIDER_NAME", "sc-jmesh-provider");
+        // System.setProperty("PROVIDER_NAME", "sc-jmsf-provider");
         SpringApplication.run(ConsumerApplication.class, args);
     }
 

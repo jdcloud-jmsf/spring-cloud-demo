@@ -15,7 +15,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <jkube.generator.name>tpaas-registry-itg.jdcloud.com/jmesh/sc-provider:${project.version}</jkube.generator.name>
+        <jkube.generator.name>tpaas-registry-itg.jdcloud.com/jmsf/sc-provider:${project.version}</jkube.generator.name>
         <jkube.enricher.jkube-service.type>NodePort</jkube.enricher.jkube-service.type>
         <jkube.enricher.jkube-service.port>8080</jkube.enricher.jkube-service.port>
     </properties>

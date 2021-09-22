@@ -28,7 +28,7 @@ logging:
 
 spring:
   application:
-    name: sc-jmesh-consumer
+    name: sc-jmsf-consumer
 #    config:
 #      import:
 #        - optional:consul:127.0.0.1:8500
