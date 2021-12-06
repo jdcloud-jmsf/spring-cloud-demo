@@ -15,7 +15,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <jkube.generator.name>tpaas-registry-itg.jdcloud.com/jmsf/sc-provider:${project.version}</jkube.generator.name>
+        <jkube.generator.name>registry.xxx.com/jmsf/sc-provider:${project.version}</jkube.generator.name>
         <jkube.enricher.jkube-service.type>NodePort</jkube.enricher.jkube-service.type>
         <jkube.enricher.jkube-service.port>8080</jkube.enricher.jkube-service.port>
     </properties>
@@ -213,13 +213,13 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <pullRegistry>tpaas-registry-itg-vpc.jdcloud.com</pullRegistry>
-                    <pushRegistry>tpaas-registry-itg.jdcloud.com</pushRegistry>
-                    <registry>tpaas-registry-itg.jdcloud.com</registry>
+                    <pullRegistry>registry.xxx.com</pullRegistry>
+                    <pushRegistry>registry.xxx.com</pushRegistry>
+                    <registry>registry.xxx.com</registry>
                     <authConfig>
                         <push>
-                            <username>jrwangwei3</username>
-                            <password>jrwangwei3</password>
+                            <username>zhangsan</username>
+                            <password>zhangsan</password>
                         </push>
                     </authConfig>
                     <resources>

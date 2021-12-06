@@ -30,19 +30,19 @@ image-jmsf-provider:
 
 docker-login:
 	#docker login jdcloud-cn-north-1.jcr.service.jdcloud.com   -u jdcloud -p xd8JEsbMe8iNAjR1
-	docker login tpaas-registry-itg.jdcloud.com -u 'jrwangwei3' -p 'jrwangwei3'
+	docker login registry.xxx.com -u 'zhangsan' -p 'zhangsan'
 
 push-sc-consumer:
-	docker push tpaas-registry-itg.jdcloud.com/jmsf/sc-consumer:1.0.0-SNAPSHOT
+	docker push registry.xxx.com/jmsf/sc-consumer:1.0.0-SNAPSHOT
 
 push-sc-provider:
-	docker push tpaas-registry-itg.jdcloud.com/jmsf/sc-provider:1.0.0-SNAPSHOT
+	docker push registry.xxx.com/jmsf/sc-provider:1.0.0-SNAPSHOT
 
 push-jmsf-consumer:
-	docker push tpaas-registry-itg.jdcloud.com/jmsf/sc-jmsf-consumer:1.0.0-SNAPSHOT
+	docker push registry.xxx.com/jmsf/sc-jmsf-consumer:1.0.0-SNAPSHOT
 
 push-jmsf-provider:
-	docker push tpaas-registry-itg.jdcloud.com/jmsf/sc-jmsf-provider:1.0.0-SNAPSHOT
+	docker push registry.xxx.com/jmsf/sc-jmsf-provider:1.0.0-SNAPSHOT
 
 undeploy-sc-consumer:
 	kubectl delete -f ./kubernetes/sc-consumer.yml

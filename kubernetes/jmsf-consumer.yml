@@ -45,7 +45,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-          image: tpaas-registry-itg-vpc.jdcloud.com/jmsf/sc-jmsf-consumer:1.0.0-SNAPSHOT
+          image: registry.xxx.com/jmsf/sc-jmsf-consumer:1.0.0-SNAPSHOT
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
