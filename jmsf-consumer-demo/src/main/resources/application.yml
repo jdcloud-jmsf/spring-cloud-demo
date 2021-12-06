@@ -33,13 +33,13 @@ spring:
 #      import:
 #        - optional:consul:127.0.0.1:8500
   cloud:
-    loadbalancer:
-      enabled: true
-      zone: zone1
-      configurations: zone-preference
-      retry:
-        enabled: true
-        max-retries-on-next-service-instance: 3
+#    loadbalancer:
+#      enabled: true
+#      zone: zone1
+#      configurations: zone-preference
+#      retry:
+#        enabled: true
+#        max-retries-on-next-service-instance: 3
 #        retryable-status-codes:
 #          - 502
 #          - 500
@@ -50,16 +50,16 @@ spring:
 #        acl-token: 6fca9ebf-ab1d-8023-9348-e6e12649968f
         register-health-check: true
         prefer-ip-address: true
-        default-zone-metadata-name: myZone
+#        default-zone-metadata-name: myZone
 #        instance-id: consumer-001-WithZone
-        instance-group: consumer
-        instance-zone: zone1
-        tags:
-          - test
-          - chen
-          - consumer
-        metadata:
-          cc: cc
+#        instance-group: consumer
+#        instance-zone: zone1
+#        tags:
+#          - test
+#          - chen
+#          - consumer
+#        metadata:
+#          cc: cc
       config:
         enabled: true
 #        aclToken: 6fca9ebf-ab1d-8023-9348-e6e12649968f

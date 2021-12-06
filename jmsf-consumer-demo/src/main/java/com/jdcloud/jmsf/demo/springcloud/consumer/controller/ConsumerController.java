@@ -1,6 +1,6 @@
 package com.jdcloud.jmsf.demo.springcloud.consumer.controller;
 
-import com.jdcloud.jmsf.core.context.JMeshContext;
+import com.jdcloud.jmsf.core.context.JmsfContext;
 import com.jdcloud.jmsf.core.entity.CommonResponse;
 import com.jdcloud.jmsf.core.entity.Metadata;
 import com.jdcloud.jmsf.core.entity.TagPair;
@@ -67,7 +67,7 @@ public class ConsumerController {
 
     @GetMapping("/echo/{str}")
     public Map<String, Object> echo(@PathVariable String str) {
-        JMeshContext.putTag("aaa", "avalue", TagPair.ControlFlag.TRANSITIVE);
+        JmsfContext.putTag("aaa", "avalue", TagPair.ControlFlag.TRANSITIVE);
         Map<String, Object> result = new HashMap<>();
         result.put("resultFromRestTemplate", loadBalanced.getForObject("http://" + providerName + "/echo/" + str, String.class));
         result.put("resultFromFeignClient", fooService.echo(str));

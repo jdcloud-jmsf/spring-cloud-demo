@@ -1,7 +1,7 @@
 package com.jdcloud.jmsf.demo.springcloud.provider.controller;
 
 import com.jdcloud.jmsf.circuitbreaker.entity.CircuitBreakerRule;
-import com.jdcloud.jmsf.core.context.JMeshContext;
+import com.jdcloud.jmsf.core.context.JmsfContext;
 import com.jdcloud.jmsf.core.entity.CommonResponse;
 import com.jdcloud.jmsf.core.entity.Metadata;
 import com.jdcloud.jmsf.core.entity.TagPair;
@@ -110,7 +110,7 @@ public class ProviderController {
 
     @GetMapping(value = "/echo/{str}")
     public String echo(@PathVariable String str) {
-        List<TagPair> tagPairs = JMeshContext.getTags(JMeshContext.Type.UPSTREAM);
+        List<TagPair> tagPairs = JmsfContext.getTags(JmsfContext.Type.UPSTREAM);
         log.info("[Provider-demo]--response info: {}, tags={}", str, tagPairs);
         // return restTemplate.getForObject("http://sc-jmsf-consumer/echo2/" + str, String.class) + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
         return str + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();

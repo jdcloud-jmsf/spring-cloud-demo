@@ -95,7 +95,7 @@
             <dependency>
                 <groupId>com.jdcloud.jmsf</groupId>
                 <artifactId>spring-cloud-jmsf-dependencies</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>1.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -119,34 +119,4 @@
         </plugins>
     </build>
 
-    <profiles>
-        <!--开发环境-->
-        <profile>
-            <id>develop</id>
-            <properties>
-                <activeProfile>develop</activeProfile>
-            </properties>
-        </profile>
-        <!--测试环境-->
-        <profile>
-            <id>test</id>
-            <properties>
-                <activeProfile>test</activeProfile>
-            </properties>
-        </profile>
-        <!--预发布环境-->
-        <profile>
-            <id>pre</id>
-            <properties>
-                <activeProfile>pre</activeProfile>
-            </properties>
-        </profile>
-        <!--正式环境-->
-        <profile>
-            <id>production</id>
-            <properties>
-                <activeProfile>production</activeProfile>
-            </properties>
-        </profile>
-    </profiles>
 </project>

@@ -53,7 +53,7 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>bootstrap.yml</include>
+<!--                    <include>bootstrap.yml</include>-->
                     <include>application.yml</include>
                     <include>application-${activeProfile}.yml</include>
                 </includes>
@@ -80,6 +80,7 @@
 
             <!-- 用于复制指定的文件 -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
@@ -191,7 +192,9 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
                     <descriptors>
@@ -232,7 +235,7 @@
                     </authConfig>
                     <resources>
                         <env>
-                            <organization>JoyMesh</organization>
+                            <organization>JMSF</organization>
                             <projectname>${project.name}</projectname>
 <!--                            <JMESH_SERVICE_NAMESPACE>default</JMESH_SERVICE_NAMESPACE>-->
 <!--                            <JMESH_SERVICE_APP>jmsf-provider-demo</JMESH_SERVICE_APP>-->
@@ -256,4 +259,34 @@
         </plugins>
     </build>
 
+    <profiles>
+        <!--开发环境-->
+        <profile>
+            <id>develop</id>
+            <properties>
+                <activeProfile>develop</activeProfile>
+            </properties>
+        </profile>
+        <!--测试环境-->
+        <profile>
+            <id>test</id>
+            <properties>
+                <activeProfile>test</activeProfile>
+            </properties>
+        </profile>
+        <!--预发布环境-->
+        <profile>
+            <id>pre</id>
+            <properties>
+                <activeProfile>pre</activeProfile>
+            </properties>
+        </profile>
+        <!--正式环境-->
+        <profile>
+            <id>production</id>
+            <properties>
+                <activeProfile>production</activeProfile>
+            </properties>
+        </profile>
+    </profiles>
 </project>
