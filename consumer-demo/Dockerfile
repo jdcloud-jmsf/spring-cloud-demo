@@ -1,5 +1,5 @@
 FROM openjdk:11
-MAINTAINER Zhiguo.Chen<chenzhiguo@jd.com>
+MAINTAINER Zhiguo.Chen<admin@xxx.com>
 USER root
 
 WORKDIR /export/servers/
