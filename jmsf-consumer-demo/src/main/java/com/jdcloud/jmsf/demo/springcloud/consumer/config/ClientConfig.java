@@ -14,6 +14,9 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(ConfigDemoProperties.class)
 public class ClientConfig {
 
+    /**
+     * 请不要自己创建RestTemplate
+     */
     // @Bean
     // @LoadBalanced
     // public RestTemplate restTemplate() {
