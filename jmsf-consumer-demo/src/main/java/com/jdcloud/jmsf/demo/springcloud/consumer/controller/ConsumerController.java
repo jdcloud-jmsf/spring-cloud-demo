@@ -1,12 +1,12 @@
 package com.jdcloud.jmsf.demo.springcloud.consumer.controller;
 
-import com.jdcloud.jmsf.core.context.JmsfContext;
 import com.jdcloud.jmsf.core.entity.CommonResponse;
 import com.jdcloud.jmsf.core.entity.Metadata;
-import com.jdcloud.jmsf.core.entity.TagPair;
 import com.jdcloud.jmsf.demo.springcloud.consumer.properties.ConfigDemoProperties;
 import com.jdcloud.jmsf.demo.springcloud.consumer.service.FooService;
 import com.jdcloud.jmsf.demo.springcloud.consumer.vo.RequestVo;
+import com.jdcloud.jmsf.meshware.common.entity.TagPair;
+import com.jdcloud.jmsf.meshware.context.JmsfContext;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,13 +1,14 @@
 package com.jdcloud.jmsf.demo.springcloud.provider.controller;
 
 import com.jdcloud.jmsf.circuitbreaker.entity.CircuitBreakerRule;
-import com.jdcloud.jmsf.core.context.JmsfContext;
 import com.jdcloud.jmsf.core.entity.CommonResponse;
 import com.jdcloud.jmsf.core.entity.Metadata;
-import com.jdcloud.jmsf.core.entity.TagPair;
 import com.jdcloud.jmsf.demo.springcloud.provider.properties.ConfigDemoProperties;
 import com.jdcloud.jmsf.demo.springcloud.provider.vo.TestRequestVo;
 import com.jdcloud.jmsf.demo.springcloud.provider.vo.TestResponseVo;
+import com.jdcloud.jmsf.meshware.common.entity.TagPair;
+import com.jdcloud.jmsf.meshware.context.JmsfContext;
+import com.jdcloud.jmsf.meshware.context.JmsfContextHolder;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,7 +111,8 @@ public class ProviderController {
 
     @GetMapping(value = "/echo/{str}")
     public String echo(@PathVariable String str) {
-        List<TagPair> tagPairs = JmsfContext.getTags(JmsfContext.Type.UPSTREAM);
+        JmsfContext context = JmsfContextHolder.get();
+        List<TagPair> tagPairs = context.getTags();
         log.info("[Provider-demo]--response info: {}, tags={}", str, tagPairs);
         // return restTemplate.getForObject("http://sc-jmsf-consumer/echo2/" + str, String.class) + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
         return str + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
