@@ -18,6 +18,9 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class DemoLocalCache extends AbstractStringSynchronousCache<String> {
 
+    // @Autowired
+    // RedisCache redisCache;
+
     /**
      * Init cache config
      */
@@ -47,6 +50,8 @@ public class DemoLocalCache extends AbstractStringSynchronousCache<String> {
     @Override
     protected String getValueWhenExpired(String key) throws Exception {
         //如果本地缓存没有数据或数据失效，此方法体内实现从远端获取数据
+
+        // return redisCache.get(key);
         return null;
     }
 }
