@@ -120,26 +120,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy-bin</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <resources>
-                                <resource>
-                                    <directory>src/main/bin</directory>
-                                    <filtering>true</filtering>
-                                    <includes>
-                                        <include>*.sh</include>
-                                        <include>*.bat</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                            <outputDirectory>${project.build.directory}/deploy-package/bin/</outputDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>copy-others</id>
                         <phase>package</phase>
                         <goals>
@@ -218,7 +198,7 @@
             <plugin>
                 <groupId>org.eclipse.jkube</groupId>
                 <artifactId>kubernetes-maven-plugin</artifactId>
-                <version>1.5.1</version>
+                <version>1.7.0</version>
                 <executions>
                     <execution>
                         <goals>

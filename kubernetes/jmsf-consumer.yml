@@ -6,26 +6,27 @@ items:
   kind: Deployment
   metadata:
     labels:
-      app: spring-cloud-jmsf-consumer-demo
-      provider: jkube
+      app: jmsf-consumer-demo
       version: 1.0.0-SNAPSHOT
-      group: com.jdcloud.jmsf
-    name: spring-cloud-jmsf-consumer-demo
+    name: jmsf-consumer-demo
   spec:
     replicas: 1
     revisionHistoryLimit: 2
     selector:
       matchLabels:
-        app: spring-cloud-jmsf-consumer-demo
-        provider: jkube
-        group: com.jdcloud.jmsf
+        app: jmsf-consumer-demo
     template:
       metadata:
         labels:
-          app: spring-cloud-jmsf-consumer-demo
-          provider: jkube
+          app: jmsf-consumer-demo
           version: 1.0.0-SNAPSHOT
-          group: com.jdcloud.jmsf
+          app.jindowin.jd.com/name: jmsf-provider-demo
+          # value为服务名称，需要在部署的命名空间提前创建，不能重复。
+          service.jindowin.jd.com/name: jmsf-provider-demo
+          # value为true时使用非侵入方式无需代码改造，为false时需要对接jmsf sdk。
+          service.jindowin.jd.com/injection: "true"
+          # value为分组名称，用于服务治理策略的设置。
+          group.jindowin.jd.com/name: v1
       spec:
         containers:
         - env:
@@ -55,7 +56,7 @@ items:
               scheme: HTTP
             initialDelaySeconds: 180
             successThreshold: 1
-          name: jmsf-spring-cloud-jmsf-consumer-demo
+          name: jmsf-consumer-demo
           ports:
           - containerPort: 8081
             name: sunproxyadmin
