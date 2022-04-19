@@ -1,0 +1,32 @@
+#spring:
+#  cloud:
+#    consul:
+#      host: 127.0.0.1
+#      port: 8500
+#      discovery:
+#        #        acl-token: 6fca9ebf-ab1d-8023-9348-e6e12649968f
+#        register-health-check: true
+#        prefer-ip-address: true
+#        #        instance-id: provider-withZone-${random.int}
+#        #        instance-group: provider
+#        #        instance-zone: zone1
+#        #        health-check-critical-timeout: 10s
+#        tags:
+#          - test
+#          - chen
+#          - provider
+#        metadata:
+#          cc: cc
+#      config:
+#        enabled: true
+#        #        aclToken: 6fca9ebf-ab1d-8023-9348-e6e12649968f
+#        format: YAML
+#        watch:
+#          enabled: true
+#          wait-time: 5
+#          delay: 10
+#
+#      service-registry:
+#        enabled: true
+#        auto-registration:
+#          enabled: true

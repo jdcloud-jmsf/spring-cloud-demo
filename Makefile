@@ -17,16 +17,20 @@ build:
 	mvn package -f ./pom.xml -DskipTests=true package -P artifactory,test
 
 image-sc-consumer:
-	mvn k8s:build -f ./consumer-demo/pom.xml
+	#mvn k8s:build -f ./consumer-demo/pom.xml
+	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-consumer:${version} ./consumer-demo
 
 image-sc-provider:
-	mvn k8s:build -f ./provider-demo/pom.xml
+	#mvn k8s:build -f ./provider-demo/pom.xml
+	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-provider:${version} ./provider-demo
 
 image-jmsf-consumer:
-	mvn k8s:build -f ./jmsf-consumer-demo/pom.xml
+	#mvn k8s:build -f ./jmsf-consumer-demo/pom.xml
+	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-jmsf-consumer:${version} ./jmsf-consumer-demo
 
 image-jmsf-provider:
-	mvn k8s:build -f ./jmsf-provider-demo/pom.xml
+	#mvn k8s:build -f ./jmsf-provider-demo/pom.xml
+	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-jmsf-provider:${version} ./jmsf-provider-demo
 
 docker-login:
 	#docker login jdcloud-cn-north-1.jcr.service.jdcloud.com   -u jdcloud -p xd8JEsbMe8iNAjR1

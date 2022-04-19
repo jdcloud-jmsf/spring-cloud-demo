@@ -2,72 +2,69 @@
 apiVersion: v1
 kind: List
 items:
-- apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    labels:
-      app: jmsf-consumer-demo
-      version: 1.0.0-SNAPSHOT
-    name: jmsf-consumer-demo
-  spec:
-    replicas: 1
-    revisionHistoryLimit: 2
-    selector:
-      matchLabels:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
         app: jmsf-consumer-demo
-    template:
-      metadata:
-        labels:
+        version: 1.0.0-SNAPSHOT
+      name: jmsf-consumer-demo
+    spec:
+      replicas: 1
+      revisionHistoryLimit: 2
+      selector:
+        matchLabels:
           app: jmsf-consumer-demo
-          version: 1.0.0-SNAPSHOT
-          app.jindowin.jd.com/name: jmsf-provider-demo
-          # value为服务名称，需要在部署的命名空间提前创建，不能重复。
-          service.jindowin.jd.com/name: jmsf-provider-demo
-          # value为true时使用非侵入方式无需代码改造，为false时需要对接jmsf sdk。
-          service.jindowin.jd.com/injection: "true"
-          # value为分组名称，用于服务治理策略的设置。
-          group.jindowin.jd.com/name: v1
-      spec:
-        containers:
-        - env:
-          - name: PROVIDER_NAME
-            value: sc-jmsf-provider
-          - name: JMESH_SERVICE_NAME
-            value: sc-jmsf-consumer
-          - name: organization
-            value: JMesh
-          - name: projectname
-            value: JMesh - Spring Cloud Consumer Demo
-          - name: KUBERNETES_NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-          - name: HOSTNAME
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.name
-          image: registry.xxx.com/jmsf/sc-jmsf-consumer:1.0.0-SNAPSHOT
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /actuator/health
-              port: 8081
-              scheme: HTTP
-            initialDelaySeconds: 180
-            successThreshold: 1
-          name: jmsf-consumer-demo
-          ports:
-          - containerPort: 8081
-            name: sunproxyadmin
-            protocol: TCP
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /actuator/health
-              port: 8081
-              scheme: HTTP
-            initialDelaySeconds: 10
-            successThreshold: 1
-          securityContext:
-            privileged: false
+      template:
+        metadata:
+          labels:
+            app: jmsf-consumer-demo
+            version: 1.0.0-SNAPSHOT
+            app.jindowin.jd.com/name: jmsf-provider-demo
+            jmsf.service.jindowin.jd.com/name: jmsf-provider-demo
+            jmsf.service.jindowin.jd.com/injection: "false"
+            group.jindowin.jd.com/name: v1
+        spec:
+          containers:
+            - env:
+                - name: PROVIDER_NAME
+                  value: jmsf-provider-demo
+                - name: JMESH_SERVICE_NAME
+                  value: jmsf-consumer-demo
+                - name: KUBERNETES_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
+                - name: HOSTNAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+              image: registry.xxx.com/jmsf/jmsf-consumer-demo:1.0.0-SNAPSHOT
+              imagePullPolicy: Always
+              lifecycle:
+                postStart:
+                  exec:
+                    command: [ "/bin/bash", "-c", "curl -s http://sgm-server:8042/local/probe/java/script?app=jmsf-consumer-demo -o /tmp/sgm_java.sh;source /tmp/sgm_java.sh" ]
+              livenessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /actuator/health
+                  port: 8081
+                  scheme: HTTP
+                initialDelaySeconds: 180
+                successThreshold: 1
+              name: jmsf-consumer-demo
+              ports:
+                - containerPort: 8081
+                  name: sunproxyadmin
+                  protocol: TCP
+              readinessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /actuator/health
+                  port: 8081
+                  scheme: HTTP
+                initialDelaySeconds: 10
+                successThreshold: 1
+              securityContext:
+                privileged: false

@@ -6,11 +6,12 @@ USER root
 #ENV JMESH_SERVICE_APP=jmsf-provider-demo
 
 WORKDIR /export/servers/
-COPY maven/target/deploy-package/ /export/servers/
-RUN /bin/bash -c 'for f in /export/servers/*; do if [ ${f##*.} == 'zip' ];then unzip -q -d /export/servers/ $f; fi; done'
-RUN chmod +x /export/servers/bin/*.sh
+COPY ./target/deploy-package/ /export/servers/
+#RUN /bin/bash -c 'for f in /export/servers/*; do if [ ${f##*.} == 'zip' ];then unzip -q -d /export/servers/ $f; fi; done'
+#RUN chmod +x /export/servers/bin/*.sh
 
 VOLUME ["/export/servers/logs", "/export/servers/config"]
 EXPOSE 8080
 #ENTRYPOINT ["/export/servers/bin/startup.sh"]
-ENTRYPOINT ["java","-jar","-Dloader.path=config", "/export/servers/jmsf-provider.jar","--spring.config.location=/export/servers/config/"]
+#ENTRYPOINT ["java","-jar","-Dloader.path=config", "/export/servers/jmsf-provider.jar","--spring.config.location=/export/servers/config/"]
+ENTRYPOINT ["/bin/bash", "-c", "java -jar -Dloader.path=config /export/servers/jmsf-consumer.jar --spring.config.location=/export/servers/config/ ${SGM_OPTS}"]

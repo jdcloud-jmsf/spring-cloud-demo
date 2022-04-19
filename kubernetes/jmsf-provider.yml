@@ -21,21 +21,14 @@ items:
           app: jmsf-provider-demo
           version: 1.0.0-SNAPSHOT
           app.jindowin.jd.com/name: jmsf-provider-demo
-          # value为服务名称，需要在部署的命名空间提前创建，不能重复。
-          service.jindowin.jd.com/name: jmsf-provider-demo
-          # value为true时使用非侵入方式无需代码改造，为false时需要对接jmsf sdk。
-          service.jindowin.jd.com/injection: "true"
-          # value为分组名称，用于服务治理策略的设置。
+          jmsf.service.jindowin.jd.com/name: jmsf-provider-demo
+          jmsf.service.jindowin.jd.com/injection: "false"
           group.jindowin.jd.com/name: v1
       spec:
         containers:
         - env:
           - name: JMESH_SERVICE_NAME
-            value: sc-jmsf-provider
-          - name: organization
-            value: JMesh
-          - name: projectname
-            value: JMesh - Spring Cloud Provider Demo
+            value: jmsf-provider-demo
           - name: KUBERNETES_NAMESPACE
             valueFrom:
               fieldRef:
@@ -44,8 +37,12 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-          image: registry.xxx.com/jmsf/sc-jmsf-provider:1.0.0-SNAPSHOT
+          image: registry.xxx.com/jmsf/jmsf-provider-demo:1.0.0-SNAPSHOT
           imagePullPolicy: Always
+          lifecycle:
+            postStart:
+              exec:
+                command: [ "/bin/bash", "-c", "curl -s http://sgm-server:8042/local/probe/java/script?app=jmsf-provider-demo -o /tmp/sgm_java.sh;source /tmp/sgm_java.sh" ]
           livenessProbe:
             failureThreshold: 3
             httpGet:
