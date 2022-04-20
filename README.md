@@ -12,7 +12,18 @@ Spring Cloud Demo for JMSF.
 ## 使用介绍
 
 ### 构建及推送镜像
-根目录的Makefile文件可用与一键式编译项目，构建，推送镜像甚至部署服务等操作，详细请了解其中的相关命令。如`image-xx`相关命令为构建镜像，`push-xx`相关命令为推送镜像。
+根目录的`Makefile`文件可用与一键式编译项目，构建，推送镜像甚至部署服务等操作，详细请了解其中的相关命令。如`image-xx`相关命令为构建镜像，`push-xx`相关命令为推送镜像。
 
 ### 部署至K8s
 `deploy-xx`相关命令为通过yml文件部署至k8s集群，默认部署至本地`kubectl`命令默认所管理的目标集群。如想指定集群可以修改命令添加指定集群的`kubeconfig`文件配置。`undeploy-xx`相关命令为删除部署。
+
+## 注意事项
+如果使用jmsf微服务治理平台，请重点参照`jmsf-consumer-demo`和`jmsf-provider-demo`两个示例。
+引入包：
+```xml
+<dependency>
+    <groupId>com.jdcloud.jmsf</groupId>
+    <artifactId>spring-cloud-starter-jmsf</artifactId>
+    <version>1.3.4</version>
+</dependency>
+```
