@@ -18,4 +18,4 @@ EXPOSE 8081
 #ENTRYPOINT ["/export/servers/bin/startup.sh"]
 #jvm默认dns缓存永不过时，建议开发者在程序启动时设置缓存的过期时间：JAVA_OPTS=“-Dsun.net.inetaddr.ttl=3 -Dsun.net.inetaddr.negative.ttl=1”
 #ENTRYPOINT ["java","-jar","-Dloader.path=config", "/export/servers/jmsf-consumer.jar", "--spring.config.location=/export/servers/config/"]
-ENTRYPOINT ["/bin/bash", "-c", "java -jar -Dloader.path=config /export/servers/jmsf-consumer.jar --spring.config.location=/export/servers/config/ ${SGM_OPTS}"]
+ENTRYPOINT ["/bin/bash", "-c", "java ${SGM_OPTS} -jar -Dloader.path=config /export/servers/jmsf-consumer.jar --spring.config.location=/export/servers/config/"]
