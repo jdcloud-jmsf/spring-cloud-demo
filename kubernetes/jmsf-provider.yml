@@ -39,10 +39,13 @@ items:
                 fieldPath: metadata.name
           image: registry.xxx.com/jmsf/jmsf-provider-demo:1.0.0-SNAPSHOT
           imagePullPolicy: Always
-          lifecycle:
-            postStart:
-              exec:
-                command: [ "/bin/bash", "-c", "curl -s http://sgm-server:8042/local/probe/java/script?app=jmsf-provider-demo -o /tmp/sgm_java.sh;source /tmp/sgm_java.sh" ]
+#          lifecycle:
+#            postStart:
+#              exec:
+#                command: [ "/bin/bash", "-c", "curl -s http://sgm-server:8042/local/probe/java/script?app=jmsf-provider-demo -o /tmp/sgm_java.sh;source /tmp/sgm_java.sh" ]
+          volumeMounts:
+            - mountPath: /export/package/sgm-probe-java
+              name: sgm
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -66,3 +69,13 @@ items:
             successThreshold: 1
           securityContext:
             privileged: false
+        initContainers:
+          - name: init-env
+            image: busybox:1.28
+            command: [ '/bin/bash', '-c', "curl -s xxxx" ]
+            volumeMounts:
+              - mountPath: /export/package/sgm-probe-java
+                name: sgm
+        volumes:
+          - name: sgm
+            emptyDir: {}
