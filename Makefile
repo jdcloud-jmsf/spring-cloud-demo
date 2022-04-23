@@ -18,35 +18,35 @@ build:
 
 image-sc-consumer:
 	#mvn k8s:build -f ./consumer-demo/pom.xml
-	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-consumer:${version} ./consumer-demo
+	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-consumer:$(version) ./consumer-demo
 
 image-sc-provider:
 	#mvn k8s:build -f ./provider-demo/pom.xml
-	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-provider:${version} ./provider-demo
+	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-provider:$(version) ./provider-demo
 
 image-jmsf-consumer:
 	#mvn k8s:build -f ./jmsf-consumer-demo/pom.xml
-	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-jmsf-consumer:${version} ./jmsf-consumer-demo
+	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-jmsf-consumer:$(version) ./jmsf-consumer-demo
 
 image-jmsf-provider:
 	#mvn k8s:build -f ./jmsf-provider-demo/pom.xml
-	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-jmsf-provider:${version} ./jmsf-provider-demo
+	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-jmsf-provider:$(version) ./jmsf-provider-demo
 
 docker-login:
 	#docker login jdcloud-cn-north-1.jcr.service.jdcloud.com   -u jdcloud -p xd8JEsbMe8iNAjR1
 	docker login registry.xxx.com -u 'zhangsan' -p 'zhangsan'
 
 push-sc-consumer:
-	docker push registry.xxx.com/jmsf/sc-consumer:1.0.0-SNAPSHOT
+	docker push registry.xxx.com/jmsf/sc-consumer:$(version)
 
 push-sc-provider:
-	docker push registry.xxx.com/jmsf/sc-provider:1.0.0-SNAPSHOT
+	docker push registry.xxx.com/jmsf/sc-provider:$(version)
 
 push-jmsf-consumer:
-	docker push registry.xxx.com/jmsf/sc-jmsf-consumer:1.0.0-SNAPSHOT
+	docker push registry.xxx.com/jmsf/sc-jmsf-consumer:$(version)
 
 push-jmsf-provider:
-	docker push registry.xxx.com/jmsf/sc-jmsf-provider:1.0.0-SNAPSHOT
+	docker push registry.xxx.com/jmsf/sc-jmsf-provider:$(version)
 
 undeploy-sc-consumer:
 	kubectl delete -f ./kubernetes/sc-consumer.yml
