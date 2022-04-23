@@ -17,6 +17,8 @@
         <module>consumer-demo</module>
         <module>jmsf-provider-demo</module>
         <module>jmsf-consumer-demo</module>
+        <module>feign-eureka-provider-demo</module>
+        <module>feign-eureka-consumer-demo</module>
     </modules>
     <packaging>pom</packaging>
 
