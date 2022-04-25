@@ -225,20 +225,9 @@
                         <env>
                             <organization>JMSF</organization>
                             <projectname>${project.name}</projectname>
-<!--                            <JMESH_SERVICE_NAMESPACE>default</JMESH_SERVICE_NAMESPACE>-->
-<!--                            <JMESH_SERVICE_APP>jmsf-provider-demo</JMESH_SERVICE_APP>-->
-<!--                            <JMESH_SERVICE_NAME>sc-jmsf-provider</JMESH_SERVICE_NAME>-->
-<!--                            <JMESH_SERVICE_VERSION>v1.0</JMESH_SERVICE_VERSION>-->
-<!--                            <JMESH_SERVICE_GROUP>group1</JMESH_SERVICE_GROUP>-->
-<!--                            <JMESH_SERVICE_CLUSTER>cluster1</JMESH_SERVICE_CLUSTER>-->
-<!--                            <JMESH_REGISTRY_HOST>consul-server.default.svc</JMESH_REGISTRY_HOST>-->
-<!--                            <JMESH_REGISTRY_PORT>8500</JMESH_REGISTRY_PORT>-->
-<!--                            <JMESH_MESH_GROUP>mesh01</JMESH_MESH_GROUP>-->
-<!--                            <JMESH_SERVICE_DEPLOYMENT>dep1</JMESH_SERVICE_DEPLOYMENT>-->
-<!--                            <JMESH_ZONE>zone1</JMESH_ZONE>-->
                         </env>
-                        <!--                        <controllerName>my-deploymentname</controllerName>-->
-                        <!--                        <containerPrivileged>true</containerPrivileged>-->
+                        <!--<controllerName>my-deploymentname</controllerName>-->
+                        <containerPrivileged>true</containerPrivileged>
                         <imagePullPolicy>Always</imagePullPolicy>
                         <replicas>3</replicas>
                     </resources>

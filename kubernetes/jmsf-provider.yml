@@ -22,6 +22,7 @@ items:
           version: 1.0.0-SNAPSHOT
           app.jindowin.jd.com/name: jmsf-provider-demo
           jmsf.service.jindowin.jd.com/name: jmsf-provider-demo
+          # 如果采用Mesh方式接入JMSF值为true
           jmsf.service.jindowin.jd.com/injection: "false"
           group.jindowin.jd.com/name: v1
       spec:
@@ -37,7 +38,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-          image: registry.xxx.com/jmsf/jmsf-provider-demo:1.0.0-SNAPSHOT
+          image: registry.xxx.com/demo/jmsf-provider-demo:1.0.0-SNAPSHOT
           imagePullPolicy: Always
 #          lifecycle:
 #            postStart:
@@ -45,7 +46,7 @@ items:
 #                command: [ "/bin/bash", "-c", "curl -s http://sgm-server:8042/local/probe/java/script?app=jmsf-provider-demo -o /tmp/sgm_java.sh;source /tmp/sgm_java.sh" ]
           volumeMounts:
             - mountPath: /export/package/sgm-probe-java
-              name: sgm
+              name: sgm-volume
           livenessProbe:
             failureThreshold: 3
             httpGet:
@@ -71,11 +72,12 @@ items:
             privileged: false
         initContainers:
           - name: init-env
+            # 如果内网无法拉取busybox镜像，可以采用与原业务镜像相同的镜像即可
             image: busybox:1.28
             command: [ '/bin/bash', '-c', "curl -s xxxx" ]
             volumeMounts:
               - mountPath: /export/package/sgm-probe-java
-                name: sgm
+                name: sgm-volume
         volumes:
-          - name: sgm
+          - name: sgm-volume
             emptyDir: {}

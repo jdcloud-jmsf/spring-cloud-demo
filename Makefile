@@ -33,7 +33,6 @@ image-jmsf-provider:
 	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-jmsf-provider:$(version) ./jmsf-provider-demo
 
 docker-login:
-	#docker login jdcloud-cn-north-1.jcr.service.jdcloud.com   -u jdcloud -p xd8JEsbMe8iNAjR1
 	docker login registry.xxx.com -u 'zhangsan' -p 'zhangsan'
 
 push-sc-consumer:
