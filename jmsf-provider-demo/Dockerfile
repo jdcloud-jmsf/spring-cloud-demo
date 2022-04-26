@@ -1,4 +1,5 @@
-FROM openjdk:11
+FROM openjdk:11-jre
+ENV TZ Asia/Shanghai
 MAINTAINER Zhiguo.Chen<admin@xxx.com>
 USER root
 
