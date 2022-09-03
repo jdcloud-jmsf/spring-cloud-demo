@@ -1,0 +1,55 @@
+server:
+  port: ${random.int[10000,19999]}
+  #  port: 8080
+  servlet:
+    context-path: /
+
+jmsf:
+  enabled: true
+  tags:
+    - jmsf1
+    - jmsf2
+  metadata:
+    aa: aa
+    bb: bb
+  route:
+    load-balance: random
+    retryable-status-codes:
+      - 404
+      - 500
+      - 502
+  circuit-breaker:
+    enabled: true
+    wait-timeout-in-second: 10
+  # 注册中心配置，替代环境变量
+  naming:
+    type: consul
+    host: 127.0.0.1
+    port: 8500
+  # 配置中心配置，如果不代码模拟环境变量，下方配置不可缺少
+  config:
+    type: consul
+    host: 127.0.0.1
+    port: 8500
+  # 服务治理中心配置，如果不代码模拟环境变量，下方配置不可缺少
+  governance:
+    type: consul
+    host: 127.0.0.1
+    port: 8500
+  # 元数据配置，如果不代码模拟环境变量，下方配置不可缺少
+  meta:
+    app: jmsf-provider-demo
+    cluster: dev
+    group: group1
+    namespace: demo
+    mesh-group: mesh1
+
+  swagger:
+    enabled: true
+    basePackage: com.jdcloud.jmsf
+
+spring:
+  cloud:
+    consul:
+      discovery:
+        ip-address: 127.0.0.1
