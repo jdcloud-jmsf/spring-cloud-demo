@@ -22,6 +22,9 @@ spring:
         metadata:
           myfield: myvalue
           anotherfield: anothervalue
+#        enabled: false
+#      service-registry:
+#        enabled: false
       config:
         enabled: true
         aclToken: 6fca9ebf-ab1d-8023-9348-e6e12649968f

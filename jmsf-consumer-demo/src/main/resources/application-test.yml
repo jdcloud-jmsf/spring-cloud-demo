@@ -1,21 +1,3 @@
-jmsf:
-  enabled: true
-  tags:
-    - jmsf1
-    - jmsf2
-  metadata:
-    aa: aa
-    bb: bb
-#  route:
-#    load-balance: random
-#    retryable-status-codes:
-#      - 404
-#      - 500
-#      - 502
-  swagger:
-    enabled: true
-#    basePackage: com.jdcloud.jmsf
-
 dynamic:
   commonData: aaa123
   intValue: 12

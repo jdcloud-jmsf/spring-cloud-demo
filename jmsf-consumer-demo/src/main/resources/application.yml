@@ -28,7 +28,7 @@ logging:
 
 spring:
   application:
-    name: sc-jmsf-consumer
+    name: jmsf-consumer-demo
 #    config:
 #      import:
 #        - optional:consul:127.0.0.1:8500

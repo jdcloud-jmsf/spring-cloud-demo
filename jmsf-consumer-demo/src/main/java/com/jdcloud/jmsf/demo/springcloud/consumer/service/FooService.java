@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author Zhiguo.Chen
  * @version 20210702
  */
-@FeignClient("${PROVIDER_NAME:sc-jmsf-provider}")
+@FeignClient("${PROVIDER_NAME:jmsf-provider-demo}")
 public interface FooService {
 
     @GetMapping(value = "/echo/{str}")

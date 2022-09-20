@@ -42,6 +42,9 @@ items:
         group: io.meshware.springcloud
     template:
       metadata:
+        annotations:
+          sidecar.istio.io/userVolume: '[{"name":"wasmfilters-dir", "configMap": {"name": "registry-filter"}}]'
+          sidecar.istio.io/userVolumeMount: '[{"mountPath":"/var/local/lib/wasm-filters","name":"wasmfilters-dir"}]'
         labels:
           app: provider-demo
           provider: jkube
@@ -55,7 +58,7 @@ items:
           - name: JMESH_REGISTRY_HOST
             value: 116.196.114.131
           - name: JMESH_REGISTRY_TOKEN
-            value: ""
+            value: b3ac85bc-c2e1-940f-6e48-f16120de51c9
           - name: organization
             value: JMesh
           - name: projectname

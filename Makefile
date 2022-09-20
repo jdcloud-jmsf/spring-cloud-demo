@@ -1,4 +1,4 @@
-version=1.0.0-SNAPSHOT
+version=2.0.0-SNAPSHOT
 
 #all: clean build image-sc-consumer image-sc-provider docker-login push-sc-consumer push-sc-provider undeploy-consumer undeploy-provider deploy-provider deploy-consumer
 
@@ -26,11 +26,11 @@ image-sc-provider:
 
 image-jmsf-consumer:
 	#mvn k8s:build -f ./jmsf-consumer-demo/pom.xml
-	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-jmsf-consumer:$(version) ./jmsf-consumer-demo
+	docker build --platform linux/amd64 -t hub.jdcloud.com/mesh/sc-jmsf-consumer:$(version) ./jmsf-consumer-demo
 
 image-jmsf-provider:
 	#mvn k8s:build -f ./jmsf-provider-demo/pom.xml
-	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-jmsf-provider:$(version) ./jmsf-provider-demo
+	docker build --platform linux/amd64 -t hub.jdcloud.com/mesh/sc-jmsf-provider:$(version) ./jmsf-provider-demo
 
 docker-login:
 	docker login registry.xxx.com -u 'zhangsan' -p 'zhangsan'
@@ -42,10 +42,10 @@ push-sc-provider:
 	docker push registry.xxx.com/jmsf/sc-provider:$(version)
 
 push-jmsf-consumer:
-	docker push registry.xxx.com/jmsf/sc-jmsf-consumer:$(version)
+	docker push hub.jdcloud.com/mesh/sc-jmsf-consumer:$(version)
 
 push-jmsf-provider:
-	docker push registry.xxx.com/jmsf/sc-jmsf-provider:$(version)
+	docker push hub.jdcloud.com/mesh/sc-jmsf-provider:$(version)
 
 undeploy-sc-consumer:
 	kubectl delete -f ./kubernetes/sc-consumer.yml

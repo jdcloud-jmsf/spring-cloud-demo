@@ -10,7 +10,7 @@ items:
       version: 1.0.0-SNAPSHOT
     name: jmsf-provider-demo
   spec:
-    replicas: 3
+    replicas: 2
     revisionHistoryLimit: 2
     selector:
       matchLabels:
@@ -38,7 +38,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-          image: registry.xxx.com/demo/jmsf-provider-demo:1.0.0-SNAPSHOT
+          image: hub-vpc.jdcloud.com/mesh/sc-jmsf-provider:2.0.0-SNAPSHOT
           imagePullPolicy: Always
 #          lifecycle:
 #            postStart:
@@ -70,14 +70,14 @@ items:
             successThreshold: 1
           securityContext:
             privileged: false
-        initContainers:
-          - name: init-env
-            # 如果内网无法拉取busybox镜像，可以采用与原业务镜像相同的镜像即可
-            image: busybox:1.28
-            command: [ '/bin/bash', '-c', "curl -s xxxx" ]
-            volumeMounts:
-              - mountPath: /export/package/sgm-probe-java
-                name: sgm-volume
+#        initContainers:
+#          - name: init-env
+#            # 如果内网无法拉取busybox镜像，可以采用与原业务镜像相同的镜像即可
+#            image: busybox:1.28
+#            command: [ '/bin/bash', '-c', "curl -s xxxx" ]
+#            volumeMounts:
+#              - mountPath: /export/package/sgm-probe-java
+#                name: sgm-volume
         volumes:
           - name: sgm-volume
             emptyDir: {}

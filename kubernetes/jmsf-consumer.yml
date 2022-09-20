@@ -20,8 +20,8 @@ items:
           labels:
             app: jmsf-consumer-demo
             version: 1.0.0-SNAPSHOT
-            app.jindowin.jd.com/name: jmsf-provider-demo
-            jmsf.service.jindowin.jd.com/name: jmsf-provider-demo
+            app.jindowin.jd.com/name: jmsf-consumer-demo
+            jmsf.service.jindowin.jd.com/name: jmsf-consumer-demo
             # 如果采用Mesh方式接入JMSF值为true
             jmsf.service.jindowin.jd.com/injection: "false"
             group.jindowin.jd.com/name: v1
@@ -40,7 +40,7 @@ items:
                   valueFrom:
                     fieldRef:
                       fieldPath: metadata.name
-              image: registry.xxx.com/demo/jmsf-consumer-demo:1.0.0-SNAPSHOT
+              image: hub-vpc.jdcloud.com/mesh/sc-jmsf-consumer:2.0.0-SNAPSHOT
               imagePullPolicy: Always
 #              lifecycle:
 #                postStart:
@@ -72,14 +72,18 @@ items:
                 successThreshold: 1
               securityContext:
                 privileged: false
-          initContainers:
-            - name: init-env
-              # 如果内网无法拉取busybox镜像，可以采用与原业务镜像相同的镜像即可
-              image: busybox:1.28
-              command: [ '/bin/bash', '-c', "curl -s xxxx" ]
-              volumeMounts:
-                - mountPath: /export/package/sgm-probe-java
-                  name: sgm-volume
+#          initContainers:
+#            - name: init-env
+#              # 如果内网无法拉取busybox镜像，可以采用与原业务镜像相同的镜像即可
+#              image: busybox:1.28
+#              command: [ '/bin/bash', '-c', "curl -s xxxx" ]
+#              volumeMounts:
+#                - mountPath: /export/package/sgm-probe-java
+#                  name: sgm-volume
           volumes:
             - name: sgm-volume
               emptyDir: {}
+#            - name: nfs-client-root
+#              nfs:
+#                server: 10.10.10.60
+#                path: /ifs/kubernetes

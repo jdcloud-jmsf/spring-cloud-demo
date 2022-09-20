@@ -15,4 +15,4 @@ VOLUME ["/export/servers/logs", "/export/servers/config"]
 EXPOSE 8080
 #ENTRYPOINT ["/export/servers/bin/startup.sh"]
 #ENTRYPOINT ["java","-jar","-Dloader.path=config", "/export/servers/jmsf-provider.jar","--spring.config.location=/export/servers/config/"]
-ENTRYPOINT ["/bin/bash", "-c", "java ${SGM_OPTS} -jar -Dloader.path=config /export/servers/jmsf-consumer.jar --spring.config.location=/export/servers/config/"]
+ENTRYPOINT ["/bin/bash", "-c", "java ${SGM_OPTS} -jar -Dloader.path=config /export/servers/jmsf-provider.jar --spring.config.location=/export/servers/config/"]

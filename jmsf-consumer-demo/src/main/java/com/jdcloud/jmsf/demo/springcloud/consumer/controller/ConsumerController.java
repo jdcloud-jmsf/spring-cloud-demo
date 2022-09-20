@@ -50,7 +50,7 @@ public class ConsumerController {
     @LoadBalanced
     private WebClient.Builder webClientBuilder;
 
-    @Value("${PROVIDER_NAME:sc-jmsf-provider}")
+    @Value("${PROVIDER_NAME:jmsf-provider-demo}")
     private String providerName;
 
     @GetMapping("/")
