@@ -29,6 +29,9 @@ logging:
 spring:
   application:
     name: jmsf-consumer-demo
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
 #    config:
 #      import:
 #        - optional:consul:127.0.0.1:8500
