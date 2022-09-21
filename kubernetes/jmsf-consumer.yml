@@ -40,7 +40,7 @@ items:
                   valueFrom:
                     fieldRef:
                       fieldPath: metadata.name
-              image: hub-vpc.jdcloud.com/mesh/sc-jmsf-consumer:2.0.0-SNAPSHOT
+              image: hub-vpc.jdcloud.com/mesh/sc-jmsf-consumer:2.0.1-SNAPSHOT
               imagePullPolicy: Always
 #              lifecycle:
 #                postStart:

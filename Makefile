@@ -1,4 +1,4 @@
-version=2.0.0-SNAPSHOT
+version=2.0.1-SNAPSHOT
 
 #all: clean build image-sc-consumer image-sc-provider docker-login push-sc-consumer push-sc-provider undeploy-consumer undeploy-provider deploy-provider deploy-consumer
 
