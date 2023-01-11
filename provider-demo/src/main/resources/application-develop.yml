@@ -29,9 +29,5 @@ spring:
         enabled: true
         aclToken: 6fca9ebf-ab1d-8023-9348-e6e12649968f
         format: YAML
-        watch:
-          enabled: true
-          wait-time: 5
-          delay: 10
 
 

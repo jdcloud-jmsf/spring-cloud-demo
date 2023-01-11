@@ -29,22 +29,22 @@ spring:
 #    import:
 #      - optional:consul:127.0.0.1:8500
   cloud:
-#    loadbalancer:
-#      enabled: true
-#      zone: zone2
-#      configurations: zone-preference
+    loadbalancer:
+      enabled: true
+      zone: ${spring.profiles.active}
+      configurations: zone-preference
 #      retry:
 #        max-retries-on-next-service-instance: 3
     consul:
-#      host: 127.0.0.1
-#      port: 8500
+      host: 127.0.0.1
+      port: 8500
       discovery:
 #        acl-token: 6fca9ebf-ab1d-8023-9348-e6e12649968f
         register-health-check: true
         prefer-ip-address: true
-#        instance-id: provider-withZone-${random.int}
-#        instance-group: provider
-#        instance-zone: zone1
+        instance-id: provider-withZone-${random.int}
+        instance-group: provider
+        instance-zone: ${spring.profiles.active}
 #        health-check-critical-timeout: 10s
         tags:
           - test
@@ -54,10 +54,6 @@ spring:
         enabled: true
 #        aclToken: 6fca9ebf-ab1d-8023-9348-e6e12649968f
         format: YAML
-        watch:
-          enabled: true
-          wait-time: 5
-          delay: 10
         import-check:
           enabled: false
 

@@ -29,9 +29,5 @@ spring:
         enabled: true
         acl-token: ${JMESH_REGISTRY_TOKEN}
         format: YAML
-        watch:
-          enabled: true
-          wait-time: 5
-          delay: 10
 
 

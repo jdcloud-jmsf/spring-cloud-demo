@@ -25,16 +25,19 @@ jmsf:
   naming:
     type: consul
     host: 127.0.0.1
+#    token: 123123
     port: 8500
   # 配置中心配置，如果不代码模拟环境变量，下方配置不可缺少
   config:
     type: consul
     host: 127.0.0.1
+#    token: 123123
     port: 8500
   # 服务治理中心配置，如果不代码模拟环境变量，下方配置不可缺少
   governance:
     type: consul
     host: 127.0.0.1
+#    token: 123123
     port: 8500
   # 元数据配置，如果不代码模拟环境变量，下方配置不可缺少
   meta:
@@ -43,6 +46,7 @@ jmsf:
     group: group1
     namespace: demo
     mesh-group: mesh1
+    zone: ${spring.profiles.active}
 
   swagger:
     enabled: true

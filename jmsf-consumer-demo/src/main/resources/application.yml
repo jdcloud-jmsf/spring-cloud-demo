@@ -36,10 +36,10 @@ spring:
 #      import:
 #        - optional:consul:127.0.0.1:8500
   cloud:
-#    loadbalancer:
-#      enabled: true
-#      zone: zone1
-#      configurations: zone-preference
+    loadbalancer:
+      enabled: true
+      zone: ${spring.profiles.active}
+      configurations: zone-preference
 #      retry:
 #        enabled: true
 #        max-retries-on-next-service-instance: 3
@@ -55,8 +55,8 @@ spring:
         prefer-ip-address: true
 #        default-zone-metadata-name: myZone
 #        instance-id: consumer-001-WithZone
-#        instance-group: consumer
-#        instance-zone: zone1
+        instance-group: consumer
+        instance-zone: ${spring.profiles.active}
 #        tags:
 #          - test
 #          - chen
@@ -67,10 +67,6 @@ spring:
         enabled: true
 #        aclToken: 6fca9ebf-ab1d-8023-9348-e6e12649968f
         format: YAML
-        watch:
-          enabled: true
-          wait-time: 5
-          delay: 10
         import-check:
           enabled: false
   main:

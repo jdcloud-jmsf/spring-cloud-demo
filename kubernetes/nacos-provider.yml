@@ -1,0 +1,85 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: nacos-provider-demo
+    name: nacos-provider-demo
+  spec:
+    ports:
+    - name: http
+      port: 18081
+      protocol: TCP
+      targetPort: 18081
+    selector:
+      app: nacos-provider-demo
+    type: NodePort
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    labels:
+      app: nacos-provider-demo
+    name: nacos-provider-demo
+  spec:
+    replicas: 2
+    revisionHistoryLimit: 2
+    selector:
+      matchLabels:
+        app: nacos-provider-demo
+    template:
+      metadata:
+        labels:
+          app: nacos-provider-demo
+      spec:
+        containers:
+        - env:
+          - name: NACOS_ADDR
+            value: svc.meshware.io:8848
+          - name: NACOS_USERNAME
+            value: nacos
+          - name: NACOS_PASSWORD
+            value: jmsf
+          - name: NACOS_ADDR2
+            value: svc.meshware.io:8848
+          - name: NACOS_USERNAME2
+            value: nacos
+          - name: NACOS_PASSWORD2
+            value: jmsf
+          - name: projectname
+            value: nacos-provider-demo
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: HOSTNAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          image: hub-vpc.jdcloud.com/mesh/sc-nacos-provider:2.0.1-SNAPSHOT
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 18081
+              scheme: HTTP
+            initialDelaySeconds: 180
+            successThreshold: 1
+          name: nacos-provider-demo
+          ports:
+          - containerPort: 18081
+            name: http
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 18081
+              scheme: HTTP
+            initialDelaySeconds: 10
+            successThreshold: 1
+          securityContext:
+            privileged: false

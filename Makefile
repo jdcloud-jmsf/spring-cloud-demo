@@ -32,6 +32,14 @@ image-jmsf-provider:
 	#mvn k8s:build -f ./jmsf-provider-demo/pom.xml
 	docker build --platform linux/amd64 -t hub.jdcloud.com/mesh/sc-jmsf-provider:$(version) ./jmsf-provider-demo
 
+image-nacos-provider:
+	#mvn k8s:build -f ./jmsf-provider-demo/pom.xml
+	docker build --platform linux/amd64 -t hub.jdcloud.com/mesh/sc-nacos-provider:$(version) ./nacos-provider-demo
+
+image-nacos-consumer:
+	#mvn k8s:build -f ./jmsf-provider-demo/pom.xml
+	docker build --platform linux/amd64 -t hub.jdcloud.com/mesh/sc-nacos-consumer:$(version) ./nacos-consumer-demo
+
 docker-login:
 	docker login registry.xxx.com -u 'zhangsan' -p 'zhangsan'
 
@@ -46,6 +54,12 @@ push-jmsf-consumer:
 
 push-jmsf-provider:
 	docker push hub.jdcloud.com/mesh/sc-jmsf-provider:$(version)
+
+push-nacos-provider:
+	docker push hub.jdcloud.com/mesh/sc-nacos-provider:$(version)
+
+push-nacos-consumer:
+	docker push hub.jdcloud.com/mesh/sc-nacos-consumer:$(version)
 
 undeploy-sc-consumer:
 	kubectl delete -f ./kubernetes/sc-consumer.yml
