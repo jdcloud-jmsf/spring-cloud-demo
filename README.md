@@ -7,6 +7,10 @@ Spring Cloud Demo for JMSF.
 - `jmsf-consumer-demo` 采用JMSF服务治理SDK的consumer应用示例。
 - `provider-demo` 原生Spring Cloud Provider应用示例。
 - `consumer-demo` 原生Spring Cloud Consumer应用示例。
+- `nacos-provider-demo` 原生Spring Cloud Provider应用示例（采用Nacos注册中心）。
+- `nacos-consumer-demo` 原生Spring Cloud Consumer应用示例（采用Nacos注册中心）。
+- `feign-eureka-provider-demo` 原生Spring Cloud Provider应用示例（采用Eureka注册中心）。
+- `feign-eureka-consumer-demo` 原生Spring Cloud Consumer应用示例（采用Eureka注册中心）。
 - `kubernetes`文件夹下，为快速部署上述服务至K8s的描述文件。
 
 ## 使用介绍
@@ -39,9 +43,9 @@ JMSF目前支持 Spring Cloud 最新版本。Spring Cloud 、Spring Boot 及 JMS
 | 2021.0.x     | 2.7.x       |
 
 | SDK 版本号 | 新增特性                                                     |
-| ---------- | ------------------------------------------------------------ |
-| 1.0.0      | 支持基于Consul的服务注册与发现，服务限流，熔断，服务路由，服务鉴权等功能。 |
-| 1.1.0      | 融合MeshWare服务治理SDK。                                    |
-| 1.2.0      | 加入Nacos注册中心支持模块。                                  |
-| 1.3.x      | 适配Spring Cloud 2020.0.x与Spring Boot 2.5.x版本。           |
-| 2.0.x      | 适配Spring Cloud 2021.0.x与Spring Boot 2.7.x版本。           |
+|---------| ------------------------------------------------------------ |
+| 1.0.0   | 支持基于Consul的服务注册与发现，服务限流，熔断，服务路由，服务鉴权等功能。 |
+| 1.1.0   | 融合MeshWare服务治理SDK。                                    |
+| 1.2.0   | 加入Nacos注册中心支持模块。                                  |
+| 1.4.x   | 适配Spring Cloud 2020.0.x与Spring Boot 2.5.x版本。           |
+| 2.1.x   | 适配Spring Cloud 2021.0.x与Spring Boot 2.7.x版本。           |
