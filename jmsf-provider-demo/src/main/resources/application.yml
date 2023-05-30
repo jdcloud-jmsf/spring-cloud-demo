@@ -38,8 +38,8 @@ spring:
   cloud:
     loadbalancer:
       enabled: true
-      zone: ${spring.profiles.active}
-      configurations: zone-preference
+#      zone: ${spring.profiles.active}
+#      configurations: zone-preference
 #      retry:
 #        max-retries-on-next-service-instance: 3
     consul:
@@ -49,9 +49,9 @@ spring:
 #        acl-token: 6fca9ebf-ab1d-8023-9348-e6e12649968f
         register-health-check: true
         prefer-ip-address: true
-        instance-id: provider-withZone-${random.int}
-        instance-group: provider
-        instance-zone: ${spring.profiles.active}
+#        instance-id: provider-withZone-${random.int}
+#        instance-group: provider
+#        instance-zone: ${spring.profiles.active}
 #        health-check-critical-timeout: 10s
         tags:
           - test

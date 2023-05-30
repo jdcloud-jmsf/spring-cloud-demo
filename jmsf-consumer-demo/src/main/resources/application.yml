@@ -45,8 +45,8 @@ spring:
   cloud:
     loadbalancer:
       enabled: true
-      zone: ${spring.profiles.active}
-      configurations: zone-preference
+#      zone: ${spring.profiles.active}
+#      configurations: zone-preference
 #      retry:
 #        enabled: true
 #        max-retries-on-next-service-instance: 3
@@ -62,8 +62,8 @@ spring:
         prefer-ip-address: true
 #        default-zone-metadata-name: myZone
 #        instance-id: consumer-001-WithZone
-        instance-group: consumer
-        instance-zone: ${spring.profiles.active}
+#        instance-group: consumer
+#        instance-zone: ${spring.profiles.active}
 #        tags:
 #          - test
 #          - chen

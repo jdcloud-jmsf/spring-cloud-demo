@@ -42,6 +42,7 @@ jmsf:
   # 元数据配置，如果不代码模拟环境变量，下方配置不可缺少
   meta:
     app: jmsf-provider-demo
+    service: ${JMESH_SERVICE_ID:jmsf-provider-demo}
     cluster: dev
     group: group1
     namespace: demo
