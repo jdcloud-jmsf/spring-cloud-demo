@@ -46,7 +46,7 @@ jmsf:
     group: group1
     namespace: demo
     mesh-group: mesh1
-    zone: ${spring.profiles.active}
+    zone: default
 
   swagger:
     enabled: true
