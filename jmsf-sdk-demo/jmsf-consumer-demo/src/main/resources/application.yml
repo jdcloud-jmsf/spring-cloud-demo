@@ -77,7 +77,7 @@ spring:
         import-check:
           enabled: false
   main:
-    web-application-type: servlet
+    web-application-type: @webApplicationType@
   profiles:
     active: '@activeProfile@'
 

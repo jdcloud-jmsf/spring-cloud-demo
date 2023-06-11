@@ -24,19 +24,19 @@ jmsf:
   # 注册中心配置，替代环境变量
   naming:
     type: consul
-    host: 127.0.0.1
+    host: svc.meshware.io
 #    token: 123123
     port: 8500
   # 配置中心配置，如果不代码模拟环境变量，下方配置不可缺少
   config:
     type: consul
-    host: 127.0.0.1
+    host: svc.meshware.io
 #    token: 123123
     port: 8500
   # 服务治理中心配置，如果不代码模拟环境变量，下方配置不可缺少
   governance:
     type: consul
-    host: 127.0.0.1
+    host: svc.meshware.io
 #    token: 123123
     port: 8500
   # 元数据配置，如果不代码模拟环境变量，下方配置不可缺少
@@ -52,9 +52,3 @@ jmsf:
   swagger:
     enabled: true
     basePackage: com.jdcloud.jmsf
-
-spring:
-  cloud:
-    consul:
-      discovery:
-        ip-address: 127.0.0.1

@@ -20,6 +20,34 @@
         <jkube.enricher.jkube-service.port>8082</jkube.enricher.jkube-service.port>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.33</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <directory>${basedir}/target</directory>
         <finalName>sc-consumer</finalName>
@@ -206,7 +234,7 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>resource</goal>
+<!--                            <goal>resource</goal>-->
 <!--                            <goal>build</goal>-->
 <!--                            <goal>push</goal>-->
                         </goals>

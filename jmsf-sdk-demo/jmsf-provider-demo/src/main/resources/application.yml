@@ -1,0 +1,42 @@
+management:
+  endpoint:
+    shutdown:
+      enabled: false
+    restart:
+      enabled: false
+    health:
+      enabled: true
+#  server:
+#    port: 4452
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health,info,refresh
+
+logging:
+  config: classpath:logback.xml
+  level:
+    org.springframework.cloud.consul: INFO
+    com.jdcloud: ${JMESH_LOG_LEVEL:INFO}
+  pattern:
+    console: "%d{yy-MM-dd.HH:mm:ss.SSS} [%-16t] %-5p %-22c{0}%X{ServiceId}%X{trace-id} - %m%n"
+    file: "%d{yy-MM-dd.HH:mm:ss.SSS} [%-16t] %-5p %-22c{0}%X{ServiceId}%X{trace-id} - %m%n"
+  file:
+    path: ./logs/
+    name: ${logging.file.path}spring.log
+
+spring:
+  application:
+    name: jmsf-provider-demo
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+  main:
+    web-application-type: @webApplicationType@
+  profiles:
+    active: '@activeProfile@'
+#  config:
+#    activate:
+#      on-profile: '@activeProfile@'

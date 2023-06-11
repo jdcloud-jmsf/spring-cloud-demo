@@ -52,7 +52,7 @@
     </appender>
 
     <!--开发环境:打印控制台-->
-    <springProfile name="dev">
+    <springProfile name="develop">
         <!-- 日志总开关 -->
         <root level="INFO">
             <appender-ref ref="CONSOLE" />
