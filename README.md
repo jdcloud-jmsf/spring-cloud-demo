@@ -17,8 +17,27 @@ Spring Cloud Demo for JMSF.
 
 ### 构建及推送镜像
 根目录的`Makefile`文件可用与一键式编译项目，构建，推送镜像甚至部署服务等操作，详细请了解其中的相关命令。如`image-xx`相关命令为构建镜像，`push-xx`相关命令为推送镜像。
+根目录`pom.xml`中定义了几组`profiles`，用于项目打包时，动态引入使用哪种注册中心？哪种服务治理中心？哪种运行模式？以下介绍选择哪个`profile`所起到的作用。注意：**同类profile只能选择一个！**
+
+| 注册中心`profile`选择项 | 作用                                                   |
+| ----------------------- | ------------------------------------------------------ |
+| registry-consul         | 项目引入consul相关jar包，服务注册至consul              |
+| registry-nacos          | 项目引入nacos相关jar包，服务注册至nacos                |
+| Registry-eureka         | 项目引入eureka相关jar包，服务注册至eureka，不支持dubbo |
+
+| 服务治理中心`profile`选择项 | 作用                                 |
+| --------------------------- | ------------------------------------ |
+| sgc-consul                  | 对接consul的kv存储并获取服务治理策略 |
+| sgc-k8s                     | 对接k8s集群服务治理策略资源          |
+| sgc-strancer                | 对接自研服务治理策略订阅分发服务     |
+
+| 运行类型`profile`选择项 | 作用                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| web-type-servlet        | 常见运行模式，基于servlet的http server，如tomcat。Http请求使用RestTemplate，Feign |
+| Web-type-reactive       | Spring Gateway的netty server，对WebFlux技术更友好，Http请求使用WebClient |
 
 ### 部署至K8s
+
 `deploy-xx`相关命令为通过yml文件部署至k8s集群，默认部署至本地`kubectl`命令默认所管理的目标集群。如想指定集群可以修改命令添加指定集群的`kubeconfig`文件配置。`undeploy-xx`相关命令为删除部署。
 
 ## 注意事项
@@ -28,7 +47,7 @@ Spring Cloud Demo for JMSF.
 <dependency>
     <groupId>com.jdcloud.jmsf</groupId>
     <artifactId>spring-cloud-starter-jmsf</artifactId>
-    <version>2.1.2</version>
+    <version>2.1.3</version>
 </dependency>
 ```
 

@@ -53,14 +53,14 @@
     <profiles>
         <!--开发环境-->
         <profile>
-            <id>develop</id>
+            <id>run-develop</id>
             <properties>
                 <activeProfile>develop</activeProfile>
             </properties>
         </profile>
         <!--测试环境-->
         <profile>
-            <id>test</id>
+            <id>run-test</id>
             <properties>
                 <activeProfile>test</activeProfile>
             </properties>
