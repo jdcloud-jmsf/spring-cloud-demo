@@ -31,10 +31,10 @@ Spring Cloud Demo for JMSF.
 | sgc-k8s                     | 对接k8s集群服务治理策略资源          |
 | sgc-strancer                | 对接自研服务治理策略订阅分发服务     |
 
-| 运行类型`profile`选择项 | 作用                                                         |
-| ----------------------- | ------------------------------------------------------------ |
-| web-type-servlet        | 常见运行模式，基于servlet的http server，如tomcat。Http请求使用RestTemplate，Feign |
-| Web-type-reactive       | Spring Gateway的netty server，对WebFlux技术更友好，Http请求使用WebClient |
+| Web类型`profile`选择项 | 作用                                                         |
+|-------------------| ------------------------------------------------------------ |
+| web-type-servlet  | 常见运行模式，基于servlet的http server，如tomcat。Http请求使用RestTemplate，Feign |
+| web-type-reactive | Spring Gateway的netty server，对WebFlux技术更友好，Http请求使用WebClient |
 
 ### 部署至K8s
 

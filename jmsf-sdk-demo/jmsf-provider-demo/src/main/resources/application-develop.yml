@@ -6,6 +6,8 @@ server:
 
 jmsf:
   enabled: true
+  context:
+    wait-time-for-shut-down-in-millis: 5000
   tags:
     - jmsf1
     - jmsf2
@@ -49,6 +51,6 @@ jmsf:
     mesh-group: mesh1
     zone: default
 
-  swagger:
-    enabled: true
-    basePackage: com.jdcloud.jmsf
+#  swagger:
+#    enabled: true
+#    basePackage: com.jdcloud.jmsf
