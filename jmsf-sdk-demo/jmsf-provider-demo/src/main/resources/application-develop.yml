@@ -43,12 +43,19 @@ jmsf:
     port: 8500
   # 元数据配置，如果不代码模拟环境变量，下方配置不可缺少
   meta:
+    # 建议与服务名称相同
     app: jmsf-provider-demo
+    # 服务名称（JMSF控制台创建的服务名）
     service: ${JMESH_SERVICE_ID:jmsf-provider-demo}
+    # 部署对应的集群信息
     cluster: dev
+    # 自定义分组信息
     group: group1
+    # 配置JMSF控制台服务创建的对应命名空间
     namespace: demo
+    # 配置网格名称
     mesh-group: mesh1
+    # 自定义分区信息
     zone: default
 
 #  swagger:
