@@ -32,6 +32,13 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
+#  cloud:
+#    config:
+#      enabled: false
+#    consul:
+#      enabled: false
+#      config:
+#        enabled: false
 
   main:
     web-application-type: @webApplicationType@

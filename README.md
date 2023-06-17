@@ -47,7 +47,7 @@ Spring Cloud Demo for JMSF.
 <dependency>
     <groupId>com.jdcloud.jmsf</groupId>
     <artifactId>spring-cloud-starter-jmsf</artifactId>
-    <version>2.1.3</version>
+    <version>2.1.4</version>
 </dependency>
 ```
 
