@@ -42,13 +42,32 @@ Spring Cloud Demo for JMSF.
 
 ## 注意事项
 如果使用jmsf微服务治理平台，请重点参照`jmsf-consumer-demo`和`jmsf-provider-demo`两个示例。
-引入包：
+推荐的项目引入方式及包如下：
 ```xml
-<dependency>
-    <groupId>com.jdcloud.jmsf</groupId>
-    <artifactId>spring-cloud-starter-jmsf</artifactId>
-    <version>2.1.4</version>
-</dependency>
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jdcloud.jmsf</groupId>
+            <artifactId>spring-cloud-jmsf-dependencies</artifactId>
+            <version>2.1.4</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+<dependencies>
+    <dependency>
+        <groupId>com.jdcloud.jmsf</groupId>
+        <artifactId>spring-cloud-starter-jmsf</artifactId>
+    </dependency>
+</dependencies>
 ```
 
 ## JMSF介绍
