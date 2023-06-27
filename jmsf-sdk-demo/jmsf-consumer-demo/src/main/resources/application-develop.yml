@@ -1,3 +1,9 @@
+dynamic:
+  commonData: aaa123
+  intValue: 12
+  stringValue: aaaa
+  boolValue: true
+
 jmsf:
   enabled: true
   tags:
