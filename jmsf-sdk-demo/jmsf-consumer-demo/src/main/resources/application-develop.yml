@@ -15,13 +15,15 @@ jmsf:
   circuit-breaker:
     enabled: true
     wait-timeout-in-second: 10
-  # 注册中心配置，替代环境变量
+  # 注册中心配置，替代环境变量 注册中心类型：jmsfconsul,jmsfnacos,eureka
   naming:
     type: jmsfconsul
+    # 如果consul采用了k8s中daemonset方式安装了client，推荐采用如下配置方式（优先获取HOST_IP，若host_ip没有被注入托底使用后面的域名访问）
+    # host: ${HOST_IP:consul-service.istio-system.svc}
     host: svc2.meshware.io
     #    token: 123123
     port: 8500
-  # 配置中心配置，如果不代码模拟环境变量，下方配置不可缺少
+  # 配置中心配置（如果配置信息与naming相同，可以不配置config）
   config:
     type: jmsfconsul
     host: svc2.meshware.io
