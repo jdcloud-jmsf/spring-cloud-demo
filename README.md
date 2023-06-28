@@ -20,10 +20,10 @@ Spring Cloud Demo for JMSF.
 根目录`pom.xml`中定义了几组`profiles`，用于项目打包时，动态引入使用哪种注册中心？哪种服务治理中心？哪种运行模式？以下介绍选择哪个`profile`所起到的作用。注意：**同类profile只能选择一个！**
 
 | 注册中心`profile`选择项 | 作用                                                   |
-| ----------------------- | ------------------------------------------------------ |
-| registry-consul         | 项目引入consul相关jar包，服务注册至consul              |
-| registry-nacos          | 项目引入nacos相关jar包，服务注册至nacos                |
-| Registry-eureka         | 项目引入eureka相关jar包，服务注册至eureka，不支持dubbo |
+|------------------| ------------------------------------------------------ |
+| registry-consul  | 项目引入consul相关jar包，服务注册至consul              |
+| registry-nacos   | 项目引入nacos相关jar包，服务注册至nacos                |
+| registry-eureka  | 项目引入eureka相关jar包，服务注册至eureka，不支持dubbo |
 
 | 服务治理中心`profile`选择项 | 作用                                 |
 | --------------------------- | ------------------------------------ |
@@ -68,6 +68,8 @@ Spring Cloud Demo for JMSF.
         <artifactId>spring-cloud-starter-jmsf</artifactId>
     </dependency>
 </dependencies>
+
+<!-- 注意：还需要引入上面注册中心，服务治理中心对应的依赖，例如项目采用consul，则需要添加registry-consul，sgc-consul对应的profile中所引用的依赖包 -->
 ```
 
 ## JMSF介绍

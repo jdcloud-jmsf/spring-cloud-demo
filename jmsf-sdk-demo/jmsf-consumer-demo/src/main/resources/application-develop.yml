@@ -47,7 +47,7 @@ jmsf:
     app: jmsf-consumer-demo
     # 服务名称（JMSF控制台创建的服务名）
     service: ${JMESH_SERVICE_ID:jmsf-consumer-demo}
-    # 部署对应的集群信息
+    # 部署对应的集群名称信息
     cluster: dev
     # 自定义分组信息
     group: group1
