@@ -67,9 +67,22 @@ Spring Cloud Demo for JMSF.
         <groupId>com.jdcloud.jmsf</groupId>
         <artifactId>spring-cloud-starter-jmsf</artifactId>
     </dependency>
+    
+    <!-- 注意：还需要引入上面注册中心，服务治理中心对应的依赖，例如项目采用consul，则需要添加registry-consul，sgc-consul对应的profile中所引用的依赖包 -->
+    <dependency>
+        <groupId>com.jdcloud.jmsf</groupId>
+        <artifactId>spring-cloud-jmsf-registry-consul</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.jdcloud.jmsf</groupId>
+        <artifactId>spring-cloud-jmsf-config-consul</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.jdcloud.jmsf</groupId>
+        <artifactId>spring-cloud-jmsf-sgc-consul</artifactId>
+    </dependency>
 </dependencies>
 
-<!-- 注意：还需要引入上面注册中心，服务治理中心对应的依赖，例如项目采用consul，则需要添加registry-consul，sgc-consul对应的profile中所引用的依赖包 -->
 ```
 
 ## JMSF介绍
