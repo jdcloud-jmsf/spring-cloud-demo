@@ -29,6 +29,10 @@
             <artifactId>spring-cloud-starter-jmsf</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
@@ -52,8 +56,9 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-<!--                    <include>bootstrap.yml</include>-->
+                    <include>bootstrap.yml</include>
                     <include>application.yml</include>
+                    <include>bootstrap-${activeProfile}.yml</include>
                     <include>application-${activeProfile}.yml</include>
                 </includes>
             </resource>
