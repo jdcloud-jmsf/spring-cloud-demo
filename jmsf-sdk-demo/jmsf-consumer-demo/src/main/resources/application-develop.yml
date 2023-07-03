@@ -4,6 +4,7 @@ dynamic:
   stringValue: aaaa
   boolValue: true
 
+# 注意：若依赖spring-cloud-starter-bootstrap，则jmsf配置需要配置在bootstrap.yml或者bootstrap-xxx.yml文件中
 jmsf:
   enabled: true
   context:
