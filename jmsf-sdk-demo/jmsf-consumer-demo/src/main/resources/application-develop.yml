@@ -6,6 +6,8 @@ dynamic:
 
 jmsf:
   enabled: true
+  context:
+    wait-time-for-shut-down-in-millis: 5000
   route:
     load-balance: random
     retryable-status-codes:
