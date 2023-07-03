@@ -47,7 +47,7 @@ public class ConsumerController {
     private Metadata metadata;
 
     @Autowired
-    @LoadBalanced
+    // @LoadBalanced
     private WebClient.Builder webClientBuilder;
 
     @Value("${PROVIDER_NAME:jmsf-provider-demo}")
