@@ -14,12 +14,6 @@ jmsf:
   enabled: true
   context:
     wait-time-for-shut-down-in-millis: 5000
-  tags:
-    - jmsf1
-    - jmsf2
-  metadata:
-    aa: aa
-    bb: bb
   route:
     load-balance: random
     retryable-status-codes:
@@ -35,19 +29,13 @@ jmsf:
     # 如果consul采用了k8s中daemonset方式安装了client，推荐采用如下配置方式（优先获取HOST_IP，若host_ip没有被注入托底使用后面的域名访问）
     # host: ${HOST_IP:consul-service.istio-system.svc}
     host: svc2.meshware.io
-#    token: 123123
-    port: 8500
-  # 配置中心配置（如果配置信息与naming相同，可以不配置config）
-  config:
-    type: jmsfconsul
-    host: svc2.meshware.io
-#    token: 123123
+    token: 123123
     port: 8500
   # 服务治理中心配置，如果不代码模拟环境变量，下方配置不可缺少
   governance:
     type: jmsfconsul
     host: svc2.meshware.io
-#    token: 123123
+    token: 123123
     port: 8500
   # 元数据配置，如果不代码模拟环境变量，下方配置不可缺少
   meta:
@@ -57,7 +45,7 @@ jmsf:
     service: ${JMESH_SERVICE_ID:jmsf-provider-demo}
     # 部署对应的集群名称信息
     cluster: dev
-    # 自定义分组信息
+    # 自定义分组信息（设置服务路由会用到）
     group: group1
     # 配置JMSF控制台服务创建的对应命名空间
     namespace: demo
