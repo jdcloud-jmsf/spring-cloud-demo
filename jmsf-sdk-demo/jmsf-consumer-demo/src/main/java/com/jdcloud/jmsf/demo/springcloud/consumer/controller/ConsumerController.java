@@ -10,9 +10,11 @@ import com.jdcloud.jmsf.meshware.context.JmsfContext;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -37,8 +39,12 @@ import java.util.Map;
 public class ConsumerController {
 
     @Resource
+    @Qualifier("jmsfRestTemplate")
     @LoadBalanced
     private RestTemplate loadBalanced;
+
+    @Resource
+    private RestTemplate restTemplate;
 
     @Autowired
     private FooService fooService;
@@ -87,6 +93,7 @@ public class ConsumerController {
     public Map<String, Object> echoByRestTemplate(@PathVariable String str) {
         Map<String, Object> result = new HashMap<>();
         result.put("resultFromRestTemplate", loadBalanced.getForObject("http://" + providerName + "/echo/" + str, String.class));
+        result.put("resultFromRestTemplateNoLoadBalanced", restTemplate.getForObject("http://httpbin.org/get", String.class));
         return result;
     }
 

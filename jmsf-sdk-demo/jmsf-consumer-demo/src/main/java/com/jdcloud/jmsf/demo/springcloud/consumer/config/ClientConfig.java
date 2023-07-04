@@ -2,7 +2,11 @@ package com.jdcloud.jmsf.demo.springcloud.consumer.config;
 
 import com.jdcloud.jmsf.demo.springcloud.consumer.properties.ConfigDemoProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * ClientConfig
@@ -14,12 +18,14 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(ConfigDemoProperties.class)
 public class ClientConfig {
 
-    /**
-     * 请不要自己创建RestTemplate
-     */
-    // @Bean
-    // @LoadBalanced
-    // public RestTemplate restTemplate() {
-    //     return new RestTemplate();
-    // }
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
+    @Bean
+    @LoadBalanced
+    RestTemplate jmsfRestTemplate(ClientHttpRequestFactory clientHttpRequestFactory) {
+        return new RestTemplate(clientHttpRequestFactory);
+    }
 }
