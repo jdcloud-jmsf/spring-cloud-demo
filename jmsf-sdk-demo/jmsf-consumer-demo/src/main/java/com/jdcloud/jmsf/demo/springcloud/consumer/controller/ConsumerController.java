@@ -15,13 +15,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -92,7 +93,19 @@ public class ConsumerController {
     @GetMapping("/echoByRT/{str}")
     public Map<String, Object> echoByRestTemplate(@PathVariable String str) {
         Map<String, Object> result = new HashMap<>();
-        result.put("resultFromRestTemplate", loadBalanced.getForObject("http://" + providerName + "/echo/" + str, String.class));
+        // 创建自定义的请求头
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON); // 设置请求的 Content-Type
+        headers.set("custom-header", "CustomHeader-Value");
+        // 创建 HTTP 请求的 URL
+        String url = "http://" + providerName + "/echo/" + str;
+        // 创建 HTTP 请求的方法和实体对象
+        HttpMethod httpMethod = HttpMethod.GET; // 这里可以改为 POST、PUT、DELETE 等合适的方法
+        RequestEntity<Object> requestEntity = new RequestEntity<>(headers, httpMethod, URI.create(url));
+        // 发起 HTTP 请求并获取响应
+        ResponseEntity<String> response = loadBalanced.exchange(requestEntity, String.class);
+        result.put("resultFromRestTemplate", response.getBody());
+        // result.put("resultFromRestTemplate", loadBalanced.getForObject("http://" + providerName + "/echo/" + str, String.class));
         result.put("resultFromRestTemplateNoLoadBalanced", restTemplate.getForObject("http://httpbin.org/get", String.class));
         return result;
     }

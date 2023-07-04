@@ -43,7 +43,7 @@ public class RequestTask implements ApplicationListener<ApplicationStartedEvent>
         if (consumerController == null) {
             consumerController = ApplicationContextUtil.getBean(ConsumerController.class);
         }
-        timer.add(new RequestTaskRun(timer, OptionalInt.of(Integer.parseInt(System.getProperty("REQUEST_INTERVAL", "500"))).getAsInt()));
+        // timer.add(new RequestTaskRun(timer, OptionalInt.of(Integer.parseInt(System.getProperty("REQUEST_INTERVAL", "500"))).getAsInt()));
     }
 
     class RequestTaskRun extends ScheduleTask {
