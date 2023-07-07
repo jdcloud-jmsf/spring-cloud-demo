@@ -56,7 +56,7 @@ Spring Cloud Demo for JMSF.
         <dependency>
             <groupId>com.jdcloud.jmsf</groupId>
             <artifactId>spring-cloud-jmsf-dependencies</artifactId>
-            <version>2.1.5</version>
+            <version>2.1.7</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
