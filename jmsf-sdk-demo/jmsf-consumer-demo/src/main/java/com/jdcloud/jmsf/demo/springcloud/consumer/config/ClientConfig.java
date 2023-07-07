@@ -23,9 +23,9 @@ public class ClientConfig {
         return new RestTemplate();
     }
 
-    @Bean
-    @LoadBalanced
-    RestTemplate jmsfRestTemplate(ClientHttpRequestFactory clientHttpRequestFactory) {
-        return new RestTemplate(clientHttpRequestFactory);
-    }
+    // @Bean
+    // @LoadBalanced
+    // RestTemplate jmsfRestTemplate(ClientHttpRequestFactory clientHttpRequestFactory) {
+    //     return new RestTemplate(clientHttpRequestFactory);
+    // }
 }

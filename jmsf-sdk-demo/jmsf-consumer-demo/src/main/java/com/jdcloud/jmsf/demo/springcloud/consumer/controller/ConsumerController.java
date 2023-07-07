@@ -39,11 +39,13 @@ import java.util.Map;
 @RefreshScope
 public class ConsumerController {
 
+    // 使用SDK提供的对象，具有通过注册中心进行服务发现的能力
     @Resource
     @Qualifier("jmsfRestTemplate")
     @LoadBalanced
     private RestTemplate loadBalanced;
 
+    // 使用ClientConfig中自定义的RT对象，不具有通过注册中心进行服务发现的能力
     @Resource
     private RestTemplate restTemplate;
 
