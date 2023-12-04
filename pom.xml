@@ -84,17 +84,17 @@
     </build>
 
     <repositories>
-<!--        <repository>-->
-<!--            <id>sonatype-nexus-snapshots</id>-->
-<!--            <name>Sonatype Nexus Snapshots</name>-->
-<!--            <url>https://oss.sonatype.org/content/groups/public/</url>-->
-<!--            <releases>-->
-<!--                <enabled>true</enabled>-->
-<!--            </releases>-->
-<!--            <snapshots>-->
-<!--                <enabled>true</enabled>-->
-<!--            </snapshots>-->
-<!--        </repository>-->
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
 <!--        <repository>-->
 <!--            <id>central</id>-->
 <!--            <url>https://maven.aliyun.com/repository/central</url>-->

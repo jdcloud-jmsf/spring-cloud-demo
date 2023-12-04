@@ -31,14 +31,14 @@ public class ConsumerApplication {
     @Autowired
     ConsumerController consumerController;
 
-    @Scheduled(fixedRate = 5000)
-    @EventListener(ApplicationStartedEvent.class)
-    public void onStarted() {
-        try {
-            log.info("定时请求结果：{}", consumerController.echo("Random" + new Random().nextInt()));
-        } catch (Exception e) {
-            log.error("Error! message={}", e.getMessage(), e);
-        }
-    }
+    // @Scheduled(fixedRate = 5000)
+    // @EventListener(ApplicationStartedEvent.class)
+    // public void onStarted() {
+    //     try {
+    //         log.info("定时请求结果：{}", consumerController.echo("Random" + new Random().nextInt()));
+    //     } catch (Exception e) {
+    //         log.error("Error! message={}", e.getMessage(), e);
+    //     }
+    // }
 
 }

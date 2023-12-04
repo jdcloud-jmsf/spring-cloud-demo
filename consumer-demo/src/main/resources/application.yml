@@ -18,10 +18,3 @@ endpoints:
 logging:
   level:
     org.springframework.cloud.consul: DEBUG
-spring:
-  application:
-    name: ${JMESH_SERVICE_APP:sc-consumer}
-  main:
-    web-application-type: servlet
-  profiles:
-    active: '@activeProfile@'
