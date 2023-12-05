@@ -1,4 +1,4 @@
-version=2.0.1-SNAPSHOT
+version=1.0.0
 
 #all: clean build image-sc-consumer image-sc-provider docker-login push-sc-consumer push-sc-provider undeploy-consumer undeploy-provider deploy-provider deploy-consumer
 
@@ -18,11 +18,11 @@ build:
 
 image-sc-consumer:
 	#mvn k8s:build -f ./consumer-demo/pom.xml
-	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-consumer:$(version) ./consumer-demo
+	docker build --platform linux/amd64 -t hurdes/sc-consumer:$(version) ./consumer-demo
 
 image-sc-provider:
 	#mvn k8s:build -f ./provider-demo/pom.xml
-	docker build --platform linux/amd64 -t hub.xxx.com/test/sc-provider:$(version) ./provider-demo
+	docker build --platform linux/amd64 -t hurdes/sc-provider:$(version) ./provider-demo
 
 image-jmsf-consumer:
 	#mvn k8s:build -f ./jmsf-consumer-demo/pom.xml
@@ -44,10 +44,10 @@ docker-login:
 	docker login registry.xxx.com -u 'zhangsan' -p 'zhangsan'
 
 push-sc-consumer:
-	docker push registry.xxx.com/jmsf/sc-consumer:$(version)
+	docker push hurdes/sc-consumer:$(version)
 
 push-sc-provider:
-	docker push registry.xxx.com/jmsf/sc-provider:$(version)
+	docker push hurdes/sc-provider:$(version)
 
 push-jmsf-consumer:
 	docker push hub.jdcloud.com/mesh/sc-jmsf-consumer:$(version)
