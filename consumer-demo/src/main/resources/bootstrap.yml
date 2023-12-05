@@ -6,9 +6,9 @@ spring:
   profiles:
     active: '@activeProfile@'
   redis:
-    host: 127.0.0.1
-    port: 6379
-    password: 123456
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:123456}
     database: 0
     lettuce:
       pool:
@@ -17,10 +17,10 @@ spring:
         max-wait: 100
         min-idle: 4
   datasource:
-    url: jdbc:mysql://svc.meshware.io:3306/test?characterEncoding=UTF-8
+    url: ${DB_URL:jdbc:mysql://svc.meshware.io:3306/test?characterEncoding=UTF-8}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: mysql.meshware.io
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:mysql.meshware.io}
   jpa:
     database: MYSQL
     show-sql: true
@@ -35,8 +35,8 @@ spring:
 
   cloud:
     polaris:
-      address: grpc://119.91.66.223:8091
-      namespace: default
+      address: ${POLARIS_ADDR:grpc://119.91.66.223:8091}
+      namespace: ${POLARIS_NAMESPACE:default}
       enabled: true
       discovery:
         enabled: true
@@ -55,9 +55,9 @@ spring:
         port: 28082
       pushgateway:
         enabled: true
-        address: 119.91.66.223:9091
+        address: ${PUSHGATEWAY_ADDR:119.91.66.223:9091}
       config:
-        address: grpc://119.91.66.223:8093
+        address: ${POLARIS_CONFIG_ADDR:grpc://119.91.66.223:8093}
         auto-refresh: true
         groups:
           - name: ${spring.application.name}
