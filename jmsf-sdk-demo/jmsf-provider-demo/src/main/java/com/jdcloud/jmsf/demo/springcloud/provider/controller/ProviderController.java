@@ -9,7 +9,6 @@ import com.jdcloud.jmsf.demo.springcloud.provider.vo.TestResponseVo;
 import com.jdcloud.jmsf.meshware.common.entity.TagPair;
 import com.jdcloud.jmsf.meshware.context.JmsfContext;
 import com.jdcloud.jmsf.meshware.context.JmsfContextHolder;
-import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +27,6 @@ import java.util.stream.Stream;
 @RestController
 @RefreshScope
 @RequestMapping("/")
-@Api("provider")
 public class ProviderController {
 
     @Autowired(required = false)
