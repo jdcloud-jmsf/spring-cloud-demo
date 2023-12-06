@@ -67,6 +67,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.jd.jdd</groupId>
+            <artifactId>mkt-middleware-cache-r2m</artifactId>
+            <version>3.2.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

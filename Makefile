@@ -16,13 +16,19 @@ clean:
 build:
 	mvn package -f ./pom.xml -DskipTests=true package -P artifactory,test
 
-image-sc-consumer:
+image-sc-consumer-amd:
 	#mvn k8s:build -f ./consumer-demo/pom.xml
-	docker build --platform linux/amd64 -t hurdes/sc-consumer:$(version) ./consumer-demo
+	docker build --platform linux/amd64 -t hub.jdcloud.com/mesh/sc-consumer:$(version)-AMD64 ./consumer-demo
 
-image-sc-provider:
+image-sc-consumer-arm:
+	docker build --platform linux/arm64 -t hub.jdcloud.com/mesh/sc-consumer:${version}-ARM64 -f ./consumer-demo/Dockerfile-ARM.dockerfile ./consumer-demo
+
+image-sc-provider-amd:
 	#mvn k8s:build -f ./provider-demo/pom.xml
-	docker build --platform linux/amd64 -t hurdes/sc-provider:$(version) ./provider-demo
+	docker build --platform linux/amd64 -t hub.jdcloud.com/mesh/sc-provider:$(version)-AMD64 ./provider-demo
+
+image-sc-provider-arm:
+	docker build --platform linux/arm64 -t hub.jdcloud.com/mesh/sc-provider:${version}-ARM64 -f ./provider-demo/Dockerfile-ARM.dockerfile ./provider-demo
 
 image-jmsf-consumer:
 	#mvn k8s:build -f ./jmsf-consumer-demo/pom.xml
@@ -43,11 +49,27 @@ image-nacos-consumer:
 docker-login:
 	docker login registry.xxx.com -u 'zhangsan' -p 'zhangsan'
 
-push-sc-consumer:
-	docker push hurdes/sc-consumer:$(version)
+push-sc-consumer-amd:
+	docker push hub.jdcloud.com/mesh/sc-consumer:$(version)-AMD64
 
-push-sc-provider:
-	docker push hurdes/sc-provider:$(version)
+push-sc-consumer-arm:
+	docker push hub.jdcloud.com/mesh/sc-consumer:$(version)-ARM64
+
+push-sc-provider-amd:
+	docker push hub.jdcloud.com/mesh/sc-provider:$(version)-AMD64
+
+push-sc-provider-arm:
+	docker push hub.jdcloud.com/mesh/sc-provider:$(version)-ARM64
+
+create-multi-arch-sc-consumer:
+	docker manifest rm hub.jdcloud.com/mesh/sc-consumer:$(version)
+	docker manifest create hub.jdcloud.com/mesh/sc-consumer:$(version) hub.jdcloud.com/mesh/sc-consumer:$(version)-AMD64 hub.jdcloud.com/mesh/sc-consumer:$(version)-ARM64
+	docker manifest push hub.jdcloud.com/mesh/sc-consumer:$(version)
+
+create-multi-arch-sc-provider:
+	docker manifest rm hub.jdcloud.com/mesh/sc-provider:$(version)
+	docker manifest create hub.jdcloud.com/mesh/sc-provider:$(version) hub.jdcloud.com/mesh/sc-provider:$(version)-AMD64 hub.jdcloud.com/mesh/sc-provider:$(version)-ARM64
+	docker manifest push hub.jdcloud.com/mesh/sc-provider:$(version)
 
 push-jmsf-consumer:
 	docker push hub.jdcloud.com/mesh/sc-jmsf-consumer:$(version)

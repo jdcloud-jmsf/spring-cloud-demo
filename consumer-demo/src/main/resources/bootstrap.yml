@@ -6,7 +6,7 @@ spring:
   profiles:
     active: '@activeProfile@'
   redis:
-    host: ${REDIS_HOST:127.0.0.1}
+    host: ${REDIS_HOST:svc.meshware.io}
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:123456}
     database: 0
@@ -64,6 +64,9 @@ spring:
             files: [ "config/callee.properties" ]
         enabled: false
     tencent:
+      metadata:
+        content:
+          cluster: ${CLUSTER:unknown}
       rpc-enhancement:
         enabled: true
         reporter:
@@ -71,3 +74,15 @@ spring:
           ignore-internal-server-error: true
           series: server_error
           statuses: gateway_timeout, bad_gateway, service_unavailable
+
+cache:
+  adapter:
+    enable: ${R2M_ENABLE:true}
+    cacheType: r2m  #缓存使用类型，如果项目使用r2m，此处必须配置为`r2m`
+
+  r2m:
+    app-name: ${R2M_APPNAME:admin_demo_demo_demo}
+    #    zookeeper-address: 172.25.46.201:2181,172.25.46.221:2181,172.25.46.241:2181
+    cc-address: ${R2M_CC_ADDR:10.10.0.23:8175}
+    token: ${R2M_TOKEN:a01cca3ff8}
+    password: ${R2M_PASSWORD:YV6cS9INiClNHivH}

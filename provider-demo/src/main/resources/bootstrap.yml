@@ -32,6 +32,9 @@ spring:
             files: [ "config/callee.properties" ]
         enabled: false
     tencent:
+      metadata:
+        content:
+          cluster: ${CLUSTER:unknown}
       rpc-enhancement:
         enabled: true
         reporter:
