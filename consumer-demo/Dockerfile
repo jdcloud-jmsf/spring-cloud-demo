@@ -11,4 +11,4 @@ RUN chmod +x /export/servers/bin/*.sh
 VOLUME ["/export/servers/logs", "/export/servers/config"]
 EXPOSE 8080
 #ENTRYPOINT ["/export/servers/bin/startup.sh"]
-ENTRYPOINT ["java","-jar","-Dloader.path=config","/export/servers/sc-consumer.jar","--spring.config.location=/export/servers/config/","-javaagent:/export/servers/agent/skywalking-agent.jar"]
+ENTRYPOINT ["java","-javaagent:/export/servers/agent/skywalking-agent.jar","-jar","-Dloader.path=config","/export/servers/sc-consumer.jar","--spring.config.location=/export/servers/config/"]

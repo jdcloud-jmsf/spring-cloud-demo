@@ -66,10 +66,14 @@ create-multi-arch-sc-consumer:
 	docker manifest create hub.jdcloud.com/mesh/sc-consumer:$(version) hub.jdcloud.com/mesh/sc-consumer:$(version)-AMD64 hub.jdcloud.com/mesh/sc-consumer:$(version)-ARM64
 	docker manifest push hub.jdcloud.com/mesh/sc-consumer:$(version)
 
+build-multi-arch-sc-consumer: image-sc-consumer-amd image-sc-consumer-arm push-sc-consumer-amd push-sc-consumer-arm create-multi-arch-sc-consumer
+
 create-multi-arch-sc-provider:
 	docker manifest rm hub.jdcloud.com/mesh/sc-provider:$(version)
 	docker manifest create hub.jdcloud.com/mesh/sc-provider:$(version) hub.jdcloud.com/mesh/sc-provider:$(version)-AMD64 hub.jdcloud.com/mesh/sc-provider:$(version)-ARM64
 	docker manifest push hub.jdcloud.com/mesh/sc-provider:$(version)
+
+build-multi-arch-sc-provider: image-sc-provider-amd image-sc-provider-arm push-sc-provider-amd push-sc-provider-arm create-multi-arch-sc-provider
 
 push-jmsf-consumer:
 	docker push hub.jdcloud.com/mesh/sc-jmsf-consumer:$(version)

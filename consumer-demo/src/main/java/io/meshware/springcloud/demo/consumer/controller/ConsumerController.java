@@ -3,7 +3,6 @@ package io.meshware.springcloud.demo.consumer.controller;
 import io.meshware.cache.api.RedisCache;
 import io.meshware.springcloud.demo.consumer.entity.MoneyPO;
 import io.meshware.springcloud.demo.consumer.repository.MoneyBaseQueryRepository;
-import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.sql.Timestamp;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +35,7 @@ public class ConsumerController {
 
     private final MoneyBaseQueryRepository moneyBaseQueryRepository;
 
-    @Autowired(required=false)
+    @Autowired(required = false)
     private RedisCache redisCache;
 
     @Autowired
