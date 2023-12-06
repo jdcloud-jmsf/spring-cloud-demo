@@ -131,7 +131,7 @@ public class ProviderController {
     @GetMapping(value = "/echo/{str}")
     public String echo(@PathVariable String str) {
         log.info("provider-demo -- response info: [" + str + "]");
-        return str + "response from:" + System.getenv("HOSTNAME") + ", cluster:" + System.getenv("CLUSTER");
+        return str + "! response from:" + System.getenv("HOSTNAME") + ", cluster:" + System.getenv("CLUSTER");
     }
 
     /**
