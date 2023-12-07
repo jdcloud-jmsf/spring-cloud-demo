@@ -67,6 +67,8 @@ spring:
       metadata:
         content:
           cluster: ${CLUSTER:unknown}
+        transitive:
+          - cluster
       rpc-enhancement:
         enabled: true
         reporter:

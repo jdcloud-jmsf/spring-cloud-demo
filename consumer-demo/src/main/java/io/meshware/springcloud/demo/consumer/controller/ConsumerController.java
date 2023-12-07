@@ -3,6 +3,7 @@ package io.meshware.springcloud.demo.consumer.controller;
 import io.meshware.cache.api.RedisCache;
 import io.meshware.springcloud.demo.consumer.entity.MoneyPO;
 import io.meshware.springcloud.demo.consumer.repository.MoneyBaseQueryRepository;
+import io.meshware.springcloud.demo.consumer.service.FooService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -29,7 +30,7 @@ public class ConsumerController {
 
     private final RestTemplate restTemplate;
 
-    // private final FooService fooService;
+    private final FooService fooService;
 
     private final RedisTemplate<String, String> redisTemplate;
 
@@ -39,9 +40,9 @@ public class ConsumerController {
     private RedisCache redisCache;
 
     @Autowired
-    public ConsumerController(RestTemplate restTemplate, RedisTemplate<String, String> redisTemplate, MoneyBaseQueryRepository moneyBaseQueryRepository) {
+    public ConsumerController(RestTemplate restTemplate, FooService fooService, RedisTemplate<String, String> redisTemplate, MoneyBaseQueryRepository moneyBaseQueryRepository) {
         this.restTemplate = restTemplate;
-        // this.fooService = fooService;
+        this.fooService = fooService;
         this.redisTemplate = redisTemplate;
         this.moneyBaseQueryRepository = moneyBaseQueryRepository;
     }
@@ -51,6 +52,14 @@ public class ConsumerController {
         Map<String, Object> result = new HashMap<>();
         result.put("resultFromRestTemplate", restTemplate.getForObject("http://sc-provider/echo/" + str, String.class));
         // result.put("resultFromFeignClient", fooService.echo(str));
+        return result;
+    }
+
+    @GetMapping("/echoByFeign/{str}")
+    public Map<String, Object> echoByFeign(@PathVariable String str) {
+        Map<String, Object> result = new HashMap<>();
+        // result.put("resultFromRestTemplate", restTemplate.getForObject("http://sc-provider/echo/" + str, String.class));
+        result.put("resultFromFeignClient", fooService.echo(str));
         return result;
     }
 
