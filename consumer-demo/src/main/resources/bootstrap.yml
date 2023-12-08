@@ -63,6 +63,8 @@ spring:
           - name: ${spring.application.name}
             files: [ "config/callee.properties" ]
         enabled: false
+      loadbalancer:
+        strategy: random
     tencent:
       metadata:
         content:
