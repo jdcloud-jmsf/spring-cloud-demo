@@ -107,11 +107,6 @@
                     <groupId>com.jdcloud.jmsf</groupId>
                     <artifactId>spring-cloud-jmsf-sgc-consul</artifactId>
                 </dependency>
-                <dependency>
-                    <groupId>com.jdcloud.jmsf</groupId>
-                    <artifactId>spring-cloud-jmsf-swagger</artifactId>
-                    <version>2.1.8</version>
-                </dependency>
             </dependencies>
         </profile>
         <profile>

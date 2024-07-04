@@ -47,7 +47,3 @@ jmsf:
     mesh-group: mesh1
     # 自定义分区信息
     zone: default
-
-#  swagger:
-#    enabled: true
-#    basePackage: com.jdcloud.jmsf
