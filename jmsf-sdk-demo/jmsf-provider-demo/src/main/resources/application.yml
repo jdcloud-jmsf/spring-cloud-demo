@@ -43,7 +43,7 @@ spring:
   main:
     web-application-type: @webApplicationType@
   profiles:
-    active: '@activeProfile@'
+    active: 'develop'
 #  config:
 #    activate:
 #      on-profile: '@activeProfile@'

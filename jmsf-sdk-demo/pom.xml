@@ -54,6 +54,9 @@
         <!--开发环境-->
         <profile>
             <id>run-develop</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <activeProfile>develop</activeProfile>
             </properties>
@@ -80,6 +83,9 @@
         </profile>
         <profile>
             <id>registry-nacos</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <dependencies>
                 <dependency>
                     <groupId>com.jdcloud.jmsf</groupId>
@@ -130,6 +136,9 @@
         <!-- DEMO镜像构建必需要2选1 -->
         <profile>
             <id>web-type-servlet</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <webApplicationType>servlet</webApplicationType>
             </properties>

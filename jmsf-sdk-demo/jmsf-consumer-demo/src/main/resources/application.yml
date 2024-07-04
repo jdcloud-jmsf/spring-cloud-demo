@@ -42,7 +42,7 @@ spring:
   main:
     web-application-type: @webApplicationType@
   profiles:
-    active: '@activeProfile@'
+    active: 'develop'
 
   cloud:
     discovery:

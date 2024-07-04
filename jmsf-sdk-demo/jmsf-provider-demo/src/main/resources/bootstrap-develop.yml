@@ -14,24 +14,20 @@ jmsf:
   enabled: true
   context:
     wait-time-for-shut-down-in-millis: 5000
-  # 注册中心配置，替代环境变量 注册中心类型：jmsfconsul,nacos,eureka
+  # 注册中心配置 注册中心类型：jmsfconsul,nacos,eureka
   naming:
     type: nacos
-    # 如果consul采用了k8s中daemonset方式安装了client，推荐采用如下配置方式（优先获取HOST_IP，若host_ip没有被注入托底使用后面的域名访问）
-    # host: ${HOST_IP:consul-service.istio-system.svc}
-    host: svc.meshware.io
-#    token: 123123
-    port: 8848
-    username: nacos
-    password: nacos
-  # 服务治理中心配置，如果不代码模拟环境变量，下方配置不可缺少
+    host: ${REGISTRY_HOST:nacos-server.nacos.svc}
+    port: ${REGISTRY_HOST:8848}
+    username: ${REGISTRY_USERNAME:nacos}
+    password: ${REGISTRY_PASSWORD:nacos}
+  # 服务治理中心配置，下方配置不可缺少
   governance:
-    enabled: false
-    type: jmsfconsul
-    host: svc.meshware.io
-#    token: 123123
-    port: 8500
-  # 元数据配置，如果不代码模拟环境变量，下方配置不可缺少
+    enabled: ${JMESH_SG_ENABLED:false}
+    type: ${JMESH_SG_TYPE:strancer}
+    host: ${JMESH_SG_HOST:strategy-server.istio-system.svc}
+    port: ${JMESH_SG_PORT:20325}
+  # 元数据配置，下方配置不可缺少
   meta:
     # 建议与服务名称相同
     app: jmsf-provider-demo

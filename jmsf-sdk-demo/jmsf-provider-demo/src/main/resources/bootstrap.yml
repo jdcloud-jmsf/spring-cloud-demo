@@ -15,7 +15,7 @@ spring:
   main:
     web-application-type: @webApplicationType@
   profiles:
-    active: '@activeProfile@'
+    active: 'develop'
 
 # 采用Consul注册中心想要关闭注册发现，希望仅仅启动本地应用，则如下配置：
 #  cloud:
