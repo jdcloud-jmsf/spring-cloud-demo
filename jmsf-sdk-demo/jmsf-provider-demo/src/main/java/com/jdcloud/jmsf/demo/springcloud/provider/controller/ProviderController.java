@@ -2,14 +2,14 @@ package com.jdcloud.jmsf.demo.springcloud.provider.controller;
 
 import com.jdcloud.jmsf.circuitbreaker.entity.CircuitBreakerRule;
 import com.jdcloud.jmsf.core.entity.CommonResponse;
-import com.jdcloud.jmsf.core.entity.Metadata;
 import com.jdcloud.jmsf.demo.springcloud.provider.properties.ConfigDemoProperties;
 import com.jdcloud.jmsf.demo.springcloud.provider.vo.TestRequestVo;
 import com.jdcloud.jmsf.demo.springcloud.provider.vo.TestResponseVo;
 import com.jdcloud.jmsf.meshware.common.entity.TagPair;
+import com.jdcloud.jmsf.meshware.context.GlobalContext;
 import com.jdcloud.jmsf.meshware.context.JmsfContext;
 import com.jdcloud.jmsf.meshware.context.JmsfContextHolder;
-import io.swagger.annotations.Api;
+import com.jdcloud.jmsf.meshware.option.MetaOptions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,11 +28,7 @@ import java.util.stream.Stream;
 @RestController
 @RefreshScope
 @RequestMapping("/")
-@Api("provider")
 public class ProviderController {
-
-    @Autowired(required = false)
-    private Metadata metadata;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -46,7 +42,7 @@ public class ProviderController {
 
     @GetMapping("/")
     public String home() {
-        return "Hello world, from: " + metadata.getServiceName();
+        return "Hello world, from: provider";
     }
 
     /**
@@ -112,10 +108,11 @@ public class ProviderController {
     @GetMapping(value = "/echo/{str}")
     public String echo(@PathVariable String str) {
         JmsfContext context = JmsfContextHolder.get();
+        MetaOptions metaOptions = GlobalContext.getMetaOptions();
         List<TagPair> tagPairs = context.getTags();
         log.info("[Provider-demo]--response info: {}, tags={}", str, tagPairs);
         // return restTemplate.getForObject("http://sc-jmsf-consumer/echo2/" + str, String.class) + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
-        return str + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
+        return str + ", from: serviceName=" + metaOptions.getService() + ", instanceId=" + metaOptions.getInstanceId();
     }
 
     @GetMapping(value = "/echo/{str}/{sleepSeconds}")
@@ -127,26 +124,29 @@ public class ProviderController {
         } catch (InterruptedException e) {
             log.error("Error!", e);
         }
-        return str + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
+        MetaOptions metaOptions = GlobalContext.getMetaOptions();
+        return str + ", from: serviceName=" + metaOptions.getService() + ", instanceId=" + metaOptions.getInstanceId();
     }
 
     @GetMapping(value = "/login1")
     public TestResponseVo login1(@ModelAttribute TestRequestVo requestVo) {
+        MetaOptions metaOptions = GlobalContext.getMetaOptions();
         TestResponseVo testResponseVo = new TestResponseVo();
         testResponseVo.setCode(1);
         testResponseVo.setMessage("Test Message");
         testResponseVo.setData(requestVo.getUserName() + requestVo.getPassword() + ", from: serviceName=" +
-                metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId());
+                metaOptions.getService() + ", instanceId=" + metaOptions.getInstanceId());
         return testResponseVo;
     }
 
     @GetMapping(value = "/login2")
     public TestResponseVo login2(@RequestBody TestRequestVo requestVo) {
+        MetaOptions metaOptions = GlobalContext.getMetaOptions();
         TestResponseVo testResponseVo = new TestResponseVo();
         testResponseVo.setCode(1);
         testResponseVo.setMessage("Test Message");
         testResponseVo.setData(requestVo.getUserName() + requestVo.getPassword() + ", from: serviceName=" +
-                metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId());
+                metaOptions.getService() + ", instanceId=" + metaOptions.getInstanceId());
         return testResponseVo;
     }
 
@@ -158,8 +158,9 @@ public class ProviderController {
 
     @GetMapping(value = "/getConfig")
     public Map<String, Object> getConfig() {
+        MetaOptions metaOptions = GlobalContext.getMetaOptions();
         Map<String, Object> configData = new HashMap<>();
-        configData.put("metadata", metadata.toString());
+        configData.put("metadata", metaOptions.toString());
         configData.put("commonData", commonData);
         configData.put("dynamicConfig", configDemoProperties.toString());
         return configData;

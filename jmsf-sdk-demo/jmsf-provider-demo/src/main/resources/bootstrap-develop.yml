@@ -16,14 +16,17 @@ jmsf:
     wait-time-for-shut-down-in-millis: 5000
   # 注册中心配置，替代环境变量 注册中心类型：jmsfconsul,jmsfnacos,eureka
   naming:
-    type: jmsfconsul
+    type: nacos
     # 如果consul采用了k8s中daemonset方式安装了client，推荐采用如下配置方式（优先获取HOST_IP，若host_ip没有被注入托底使用后面的域名访问）
     # host: ${HOST_IP:consul-service.istio-system.svc}
     host: svc.meshware.io
 #    token: 123123
-    port: 8500
+    port: 8848
+    username: nacos
+    password: nacos
   # 服务治理中心配置，如果不代码模拟环境变量，下方配置不可缺少
   governance:
+    enabled: false
     type: jmsfconsul
     host: svc.meshware.io
 #    token: 123123

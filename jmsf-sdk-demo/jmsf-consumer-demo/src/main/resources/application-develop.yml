@@ -19,6 +19,7 @@ jmsf:
     port: 8500
   # 服务治理中心配置，如果不代码模拟环境变量，下方配置不可缺少
   governance:
+    enabled: false
     type: jmsfconsul
     host: svc.meshware.io
 #    token: 123123

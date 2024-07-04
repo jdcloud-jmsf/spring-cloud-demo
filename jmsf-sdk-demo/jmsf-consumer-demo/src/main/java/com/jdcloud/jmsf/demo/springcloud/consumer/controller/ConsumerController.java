@@ -1,13 +1,13 @@
 package com.jdcloud.jmsf.demo.springcloud.consumer.controller;
 
 import com.jdcloud.jmsf.core.entity.CommonResponse;
-import com.jdcloud.jmsf.core.entity.Metadata;
 import com.jdcloud.jmsf.demo.springcloud.consumer.properties.ConfigDemoProperties;
 import com.jdcloud.jmsf.demo.springcloud.consumer.service.FooService;
 import com.jdcloud.jmsf.demo.springcloud.consumer.vo.RequestVo;
 import com.jdcloud.jmsf.meshware.common.entity.TagPair;
+import com.jdcloud.jmsf.meshware.context.GlobalContext;
 import com.jdcloud.jmsf.meshware.context.JmsfContext;
-import io.swagger.annotations.Api;
+import com.jdcloud.jmsf.meshware.option.MetaOptions;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,7 +34,6 @@ import java.util.Map;
  * @version 20210702
  */
 @Slf4j
-@Api("default")
 @RestController
 @RefreshScope
 public class ConsumerController {
@@ -53,9 +52,6 @@ public class ConsumerController {
     private FooService fooService;
 
     @Autowired
-    private Metadata metadata;
-
-    @Autowired
     // @LoadBalanced
     private WebClient.Builder webClientBuilder;
 
@@ -64,7 +60,7 @@ public class ConsumerController {
 
     @GetMapping("/")
     public String home() {
-        return "Hello world, from: " + metadata.getServiceName();
+        return "Hello world, from: consumer";
     }
 
     @GetMapping("/env/{str}")
@@ -132,26 +128,29 @@ public class ConsumerController {
 
     @GetMapping(value = "/echo2/{str}")
     public String echo2(@PathVariable String str) {
+        MetaOptions metaOptions = GlobalContext.getMetaOptions();
         log.info("consumer-demo -- request info: [" + str + "]");
-        return str + ", from: serviceName=" + metadata.getServiceName() + ", instanceId=" + metadata.getInstanceId();
+        return str + ", from: serviceName=" + metaOptions.getService() + ", instanceId=" + metaOptions.getInstanceId();
     }
 
     @PostMapping(value = "/postFunc")
     public CommonResponse postFunc(@RequestBody RequestVo requestVo) {
+        MetaOptions metaOptions = GlobalContext.getMetaOptions();
         log.info("consumer-demo -- request info: [" + requestVo.toString() + "]");
         CommonResponse commonResponse = CommonResponse.createResponse();
-        commonResponse.put("serviceName", metadata.getServiceName());
-        commonResponse.put("instanceId", metadata.getInstanceId());
+        commonResponse.put("serviceName", metaOptions.getService());
+        commonResponse.put("instanceId", metaOptions.getInstanceId());
         commonResponse.put("requestBody", requestVo);
         return commonResponse;
     }
 
     @DeleteMapping(value = "/delFunc")
     public CommonResponse delFunc(@RequestBody RequestVo requestVo) {
+        MetaOptions metaOptions = GlobalContext.getMetaOptions();
         log.info("consumer-demo -- request info: [" + requestVo.toString() + "]");
         CommonResponse commonResponse = CommonResponse.createResponse();
-        commonResponse.put("serviceName", metadata.getServiceName());
-        commonResponse.put("instanceId", metadata.getInstanceId());
+        commonResponse.put("serviceName", metaOptions.getService());
+        commonResponse.put("instanceId", metaOptions.getInstanceId());
         commonResponse.put("requestBody", requestVo);
         return commonResponse;
     }
@@ -170,8 +169,9 @@ public class ConsumerController {
 
     @GetMapping(value = "/getConfig")
     public Map<String, Object> getConfig() {
+        MetaOptions metaOptions = GlobalContext.getMetaOptions();
         Map<String, Object> configData = new HashMap<>();
-        configData.put("metadata", metadata.toString());
+        configData.put("metadata", metaOptions.toString());
         configData.put("commonData", commonData);
         configData.put("dynamicConfig", configDemoProperties.toString());
         return configData;
